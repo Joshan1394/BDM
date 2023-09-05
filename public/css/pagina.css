@@ -1,0 +1,92 @@
+:root {
+ 
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+   
+    --bdm-primary:rgb(38, 64, 139);
+    --bdm-primaryExtraD:rgb(27, 36, 107);
+    --bdm-primaryExtraD2:rgb(15, 8, 75);
+    --bdm-primaryDark:rgb(13, 2, 33);
+    --bdm-primaryExtraL:rgb(70, 100, 158);
+    --bdm-primaryLight:rgb(102, 136, 176);
+    --bdm-secunday:rgb(166, 207, 213);
+    --bdm-secundaryExtra:rgb(180, 219, 215);
+    --bdm-text:rgb(226, 244, 237);
+    --bdm-important: rgb(178, 112, 146);
+    --font-family-Title: Fugaz One;
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+  
+  *,
+  *::before,
+  *::after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box; }
+  
+    .container-background{
+      border-radius: 5px;
+      background-color: rgba(70, 100, 158,0.9);
+      background-image: url("data:image/svg+xml,%3Csvg width='48' height='32' viewBox='0 0 48 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230f084b' fill-opacity='0.17'%3E%3Cpath d='M27 32c0-3.314 2.686-6 6-6 5.523 0 10-4.477 10-10S38.523 6 33 6c-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 6.627 0 12 5.373 12 12s-5.373 12-12 12c-2.21 0-4 1.79-4 4h-2zm-6 0c0-3.314-2.686-6-6-6-5.523 0-10-4.477-10-10S9.477 6 15 6c3.314 0 6-2.686 6-6h-2c0 2.21-1.79 4-4 4C8.373 4 3 9.373 3 16s5.373 12 12 12c2.21 0 4 1.79 4 4h2z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .nav-background{
+      background-color: var(--bdm-primary);
+    }
+
+    .text{
+      color: var(--bdm-text);
+    }
+
+    .btn-sumit{
+      background-color: var(--bdm-important);
+      border-color: transparent;
+      color: var(--bdm-text) ;
+    }
+
+    .btn-sumit:hover{
+      background-color: rgb(230, 179, 206);
+      border-color: transparent;
+      color: var(--bdm-important);
+    }
+
+    .btn-sumit:active:focus{
+      background-color: rgb(230, 179, 206);
+      border-color: rgb(230, 179, 206);
+      color: var(--bdm-important);
+    }
+
+    .navbar-toggler-icon{
+      background-image: var(--bs-navbar-toggler-icon-bg);
+    }
+  
+    /* cards */
+    .card-background{
+      background-color: var(--bdm-primaryExtraD);
+      width: 25rem;
+    }
+    .card{
+      background-color: var(--bdm-primaryDark) !important;
+      color: var(--bdm-text);
+    }
+
+    .footer{
+      background-color: var(--bdm-primaryExtraD);
+    }
+
+    body{
+      color: var(--bdm-text) !important;
+    }
+
+    .cardbody-background{
+      background-color: var(--bdm-primaryDark) !important;
+    }
+
+    .botton{
+      background-color: var(--bdm-important);
+      width: 50%;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 5px;
+    }
