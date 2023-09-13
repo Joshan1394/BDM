@@ -28,9 +28,14 @@
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 
     <style>
-        .error-message {
-            color: rgb(161, 159, 247) !important;
-            margin-left: 6px !important;
+        label.error {
+            float: none;
+            color: red;
+        }
+
+        input.error {
+            border: 1px dashed rgb(255, 51, 0);
+
         }
 
         .title {
@@ -55,67 +60,53 @@
                             <h3 class="title">Registro</h3>
                             <p class="mb-4"></p>
                         </div>
-                        <form method="POST" action="#" class="signin-form">
+                        <form action="#" class="signin-form" id="formRegistro" name="formRegistro" method="POST">
                             <div class="text-center">
                                 <div class="row">
+                                    <!-- Nombre -->
                                     <div class="col">
-
-                                        <input type="text" class="form-control" placeholder="Nombre" id="nombre" name="nombre">
-
-                                        <span class="text-danger error-message"></span>
-
-
+                                        <input type="text" class="form-control mt-2 mb-2" placeholder="Nombre" id="nombre" name="nombre">
+                                        <!-- <span class="text-danger error-message"></span> -->
                                     </div>
+                                    <!-- Apellido -->
                                     <div class="col">
-
-                                        <input type="password" class="form-control" id="apellido" name="apellido" placeholder="Apellidos">
-
-                                        <span class="text-danger error-message"></span>
-
+                                        <input type="text" class="form-control mt-2 mb-2" id="apellido" name="apellido" placeholder="Apellidos">
+                                        <!-- <span class="text-danger error-message"></span> -->
                                     </div>
 
                                 </div>
                                 <div class="row">
+                                    <!-- Apodo -->
                                     <div class="col">
-
-                                        <input type="text" class="form-control" placeholder="Nombre de usuario" id="apodo" name="apodo">
-
-                                        <span class="text-danger error-message"></span>
-
-
+                                        <input type="text" class="form-control mt-2 mb-2" placeholder="Nombre de usuario" id="apodo" name="apodo">
+                                        <!-- <span class="text-danger error-message"></span> -->
                                     </div>
+                                    <!-- Imagen -->
                                     <div class="col">
-
-                                        <input class="file-input" type="file" id="images" accept="image/*" required>
+                                        <input class="file-input mt-2 mb-2" type="file" id="images" name="image" accept="image/*">
                                     </div>
 
                                 </div>
                                 <div class="row">
+                                    <!-- Email -->
                                     <div class="col">
-
-                                        <input type="text" class="form-control" placeholder="Correo eléctronico" id="email" name="email">
-
-                                        <span class="text-danger error-message"></span>
-
-
+                                        <input type="text" class="form-control mt-2 mb-2" placeholder="Correo eléctronico" id="email" name="email">
+                                        <!-- <span class="text-danger error-message"></span> -->
                                     </div>
+                                    <!-- Contraseña -->
                                     <div class="col">
-
-                                        <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">
-
-                                        <span class="text-danger error-message"></span>
-
+                                        <input type="password" class="form-control mt-2 mb-2" id="password" name="password" placeholder="Contraseña">
+                                        <!-- <span class="text-danger error-message"></span> -->
                                     </div>
 
                                 </div>
                                 <div class="row">
-
+                                    <!-- Fecha de nacimiento -->
                                     <div class="col">
-                                        <input type="date" class="form-control" id="date" name="date" placeholder="Contraseña">
-
-                                        <span class="text-danger error-message"></span>
-
+                                        <input type="date" class="form-control mt-2 mb-2" id="date" name="fechaNacimiento" placeholder="Fecha de nacimiento">
+                                        <!-- <span class="text-danger error-message"></span> -->
                                     </div>
+                                    <!-- Tipo -->
                                     <div class="col align-self-start ">
                                         <div class="d-flex align-items-start">
                                             <label for="formFile" class="form-label">Tipo:</label>
@@ -143,7 +134,9 @@
                                     </div>
 
                                 </div>
+
                                 <div class="row">
+                                    <!-- Genero -->
                                     <div class="col">
                                         <div class="d-flex align-items-start">
                                             <label for="formFile" class="form-label">Genero</label>
@@ -180,13 +173,13 @@
 
                                 </div>
 
-                               
-                                <hr class="mt-5" size="2px" color="skyblue">
-                                <div style="text-align:center" >
+
+                                <hr class="mt-3" size="2px" color="skyblue">
+                                <div style="text-align:center">
                                     <a href="login.php">¿Ya tienes cuenta? <span style="color:rgb(178, 112, 146);">Ingresa </span></a>
                                 </div>
 
-                                <button type="submit" class="mt-3 btn btn-primary">Ingresar </button>
+                                <button type="submit" class="mt-3 btn btn-primary" value="Enviar" form="formRegistro">Ingresar </button>
                         </form>
 
 
@@ -198,3 +191,12 @@
 
 
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/localization/messages_es.js"></script>
+    <script language="javascript" type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/localization/messages_es.js"></script>
+    <script src="/BDM/public/js/register.js"></script>
+</body>
+
+</html>
