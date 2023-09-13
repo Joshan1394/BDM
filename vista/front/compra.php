@@ -32,10 +32,11 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
     <!-- Style -->
     <link rel="stylesheet" href="/BDM/public/css/pagina.css">
+    <link rel="stylesheet" href="/BDM/public/css/historial_style.css">
 
     <!-- STYLE START -->
     <style>
-        body {}
+      
 
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -64,29 +65,41 @@
 
 </head>
 <!-- HEAD END -->
-<nav class="navbar navbar-expand-md  fixed-top nav-background">
-    <div class="container-fluid">
-        <a class="navbar-brand title" href="/BDM/vista/front/paginaPrincipal.php">Blissful</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                <li class="nav-item">
-                    <a class="nav-link text" href="/BDM/vista/front/perfil.php">Perfil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text" href="/BDM/vista/front/historial.php">Historial</a>
-                </li>
+<nav class="navbar navbar-expand-md  fixed-top nav-background" role="navigation">
+        <div class="container-fluid">
+            <a class="navbar-brand title" href="/BDM/vista/front/paginaPrincipal.php">Blissful</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="d-flex justify-content-start">
+                <form class="d-flex searchbar" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-sumit" type="submit">Search</button>
+                </form>
+            </div>
 
-            </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-sumit" type="submit">Search</button>
-            </form>
+            <div id="menuToggle" class="me-1">
+
+                <input type="checkbox" />
+                <span></span>
+                <span></span>
+                <span></span>
+
+                <ul id="menu">
+                    <li class="nav-item">
+                        <a class="nav-link text" href="/BDM/vista/front/perfil.php">Perfil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text" href="/BDM/vista/front/historial.php">Historial</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text" href="/BDM/vista/login.php">Inicio sesión</a>
+                    </li>
+                    
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 <!-- BODY START -->
 
 <body>
@@ -100,11 +113,11 @@
                     <div class="card" style="margin-left:5%; margin-top:2%">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="image1.jpg" class="img-fluid rounded-start" alt="curso" style="margin-top:10%; margin-left:5%;">
+                                <img src="https://m.media-amazon.com/images/I/81h0WFRhjiL._AC_UF894,1000_QL80_.jpg" class="img-fluid rounded-start" alt="curso" style="margin-top:10%; margin-left:5%;">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title">BDM Curso intermedio</h5>
+                                    <h5 class="card-title">Juguetes para gato</h5>
                                     <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. A doloribus accusantium itaque dignissimos corporis, pernatur!</p>
                                     <p class="card-text"><small class="text-muted">Precio: $200 MX</small></p>
                                 </div>

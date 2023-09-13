@@ -23,6 +23,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
     <!-- Style -->
     <link rel="stylesheet" href="/BDM/public/css/pagina.css">
+    <link rel="stylesheet" href="/BDM/public/css/historial_style.css">
 
     <style>
         body {
@@ -90,6 +91,10 @@
         .bd-mode-toggle {
             z-index: 1500;
         }
+
+
+
+
     </style>
 
 
@@ -103,26 +108,38 @@
 
 
 
-    <nav class="navbar navbar-expand-md  fixed-top nav-background">
+<nav class="navbar navbar-expand-md  fixed-top nav-background" role="navigation">
         <div class="container-fluid">
             <a class="navbar-brand title" href="/BDM/vista/front/paginaPrincipal.php">Blissful</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <div class="d-flex justify-content-start">
+                <form class="d-flex searchbar" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-sumit" type="submit">Search</button>
+                </form>
+            </div>
+
+            <div id="menuToggle" class="me-1">
+
+                <input type="checkbox" />
+                <span></span>
+                <span></span>
+                <span></span>
+
+                <ul id="menu">
                     <li class="nav-item">
                         <a class="nav-link text" href="/BDM/vista/front/perfil.php">Perfil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text" href="/BDM/vista/front/historial.php">Historial</a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link text" href="/BDM/vista/login.php">Inicio sesión</a>
+                    </li>
+                    
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-sumit" type="submit">Search</button>
-                </form>
             </div>
         </div>
     </nav>

@@ -1,0 +1,65 @@
+/* Estilos para el modal */
+.modal {
+    display: none; /* El modal está oculto por defecto */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    background-color: rgb(27, 36, 107) !important;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    
+    position: relative;
+}
+
+/* Estilo para el botón de cierre (x) */
+.close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    cursor: pointer;
+    color: rgb(13, 2, 33);
+}
+
+.close:hover {
+    color: rgb(70, 100, 158);
+}
+
+span {cursor:pointer; }
+	
+		.minus, .plus{
+			width:30px;
+			height:30px;
+			background:#ddd;
+			border-radius:4px;
+			font-size: 1rem;
+			border:1px solid #ddd;
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+		}
+		input{
+            background:#ddd;
+			height:34px;
+            width: 100px;
+            text-align: center;
+            font-size: 26px;
+			border:1px solid #ddd;
+			border-radius:4px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+video{
+    border-radius: 20px;
+}

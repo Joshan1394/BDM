@@ -23,12 +23,10 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
     <!-- Style -->
     <link rel="stylesheet" href="/BDM/public/css/pagina.css">
-
+    <link rel="stylesheet" href="/BDM/public/css/historial_style.css">
+    <link rel="stylesheet" href="/BDM/public/css/modal_style.css">
     <!-- STYLE START -->
     <style>
-        body{
-
-        }
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
@@ -56,26 +54,38 @@
 
 </head>
 <!-- HEAD END -->
-<nav class="navbar navbar-expand-md  fixed-top nav-background">
+<nav class="navbar navbar-expand-md  fixed-top nav-background" role="navigation">
     <div class="container-fluid">
         <a class="navbar-brand title" href="/BDM/vista/front/paginaPrincipal.php">Blissful</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <div class="d-flex justify-content-start">
+            <form class="d-flex searchbar" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-sumit" type="submit">Search</button>
+            </form>
+        </div>
+
+        <div id="menuToggle" class="me-1">
+
+            <input type="checkbox" />
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <ul id="menu">
                 <li class="nav-item">
                     <a class="nav-link text" href="/BDM/vista/front/perfil.php">Perfil</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text" href="/BDM/vista/front/historial.php">Historial</a>
                 </li>
+                <li class="nav-item ">
+                    <a class="nav-link text" href="/BDM/vista/login.php">Inicio sesión</a>
+                </li>
 
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-sumit" type="submit">Search</button>
-            </form>
         </div>
     </div>
 </nav>
@@ -83,7 +93,7 @@
 
 <body>
     <br><br><br><br><br>
-  
+
     <!-- MAIN START -->
     <main>
 
@@ -97,10 +107,10 @@
             <div class="card-body text-center" style="background-color:rgb(102, 136, 176); ">
                 <div class="row align-items-center">
                     <div class="col align-self-center">
-                        <div class="card" style="background-color:transparent; border-color:transparent !important;">
-                            <img src="assets/user.png" class="card-img-top" alt="..." style="border-radius:50%; width:50%; margin-left:25%; margin-top:5%">
+                        <div class="" style="background-color:transparent; border-color:transparent !important;">
+                            <img src="https://static.vecteezy.com/system/resources/previews/008/442/086/non_2x/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg" class="card-img-top mt-2" alt="..." style="border-radius:50%; width:20%;">
                             <!-- PERFIL TITLE -->
-                            <div class="card text" style=" background-color:transparent !important; border-color:transparent !important">
+                            <div class=" text" style=" background-color:transparent !important; border-color:transparent !important">
                                 <div class="card-body">
                                     <h5 class="card-title">Datos del usuario</h5>
                                     <!-- NAME -->
@@ -170,22 +180,109 @@
 
                                     <hr>
                                     <!-- EDIT -->
-                                    <button class="btn btn-sumit" type="submit">Search</button>
-                                    
+                                    <button class="btn btn-sumit" type="submit">Editar</button>
+                                    <button class="btn btn-sumit" id="openModalBtn">Agregar producto</button>
+
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div id="myModal" class="modal ">
+            <div class="modal-content w-50">
+                <span class="close">&times;</span>
+                <div class="form-step" data-step="1">
+                    <h2>Paso 1: Informacion general</h2>
+                    <form>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Description</label>
+                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                        </div>
 
-                    
+                        <button class="btn btn-primary next">Siguiente</button>
+                    </form>
+
+                </div>
+                <div class="form-step" data-step="2">
+                    <h2>Paso 2:Producto</h2>
+                    <form>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Precio individual</label>
+                            <input type="text" class="form-control w-50" id="exampleInputEmail1" placeholder="$0.00">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Cantidad</label>
+                            <div class="number">
+                                <span class="minus">-</span>
+                                <input type="text" id="cantidad" value="1" />
+                                <span class="plus">+</span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Cotización/vender</label>
+                            <select class="form-select w-50" aria-label="Default select example">
+                                <option selected>Opciones</option>
+                                <option value="1">Cotización</option>
+                                <option value="2">Vender</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary prev">Anterior</button>
+                        <button class="btn btn-primary next">Siguiente</button>
+                    </form>
+
+                </div>
+                <div class="form-step" data-step="3">
+                    <h2>Paso 3: Imágenes</h2>
+                    <form>
+                        <div class="mb-3">
+                            <label for="formFileMultiple" class="form-label">Imagenes (1 o más)</label>
+                            <input class="form-control" type="file" id="formFileMultiple" accept="image/*" multiple>
+                        </div>
+                        <div id="carouselExampleAutoplaying" class="carousel slide mt-5" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <!-- Las imágenes seleccionadas se mostrarán aquí -->
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                        <button class="btn btn-primary prev mt-5">Anterior</button>
+                        <button class="btn btn-primary next mt-5">Siguiente</button>
+                    </form>
+                </div>
+                <div class="form-step" data-step="3">
+                    <h2>Paso 3: Video</h2>
+                    <form>
+                        <div class="mb-3">
+                            <label for="formFileMultiple" class="form-label">Video</label>
+                            <input class="form-control" id="file" type="file" accept="video/mp4,video/mkv, video/x-m4v,video/*">
+                        </div>
+                        <div class="mb-3 w-75">
+                            <video class="mb-3 w-100 h-100" id="video" controls></video>
+                        </div>
+                        <button class="btn btn-primary prev">Anterior</button>
+                        <button class="btn btn-primary submit">Enviar</button>
+                    </form>
                 </div>
             </div>
         </div>
     </main>
 
     <br><br><br><br><br>
-
+    <script src="/BDM/public/js/modal.js"></script>
     <script src="/BDM/public/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 
 <!-- ======= Footer ======= -->
