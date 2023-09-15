@@ -124,6 +124,12 @@ jQuery(function() {
             fechaNacimiento: {
                 required: true
             },
+            radioGroup1: {
+                required: true
+            },
+            radioGroup: {
+                required: true
+            },
             
             email: {
                 required: true,
@@ -153,6 +159,14 @@ jQuery(function() {
             email: {
                 ValidarEmail: $.format("Ingresa un correo valido")
             }
+        },
+        submitHandler: function(form) {
+            // La validación ha sido exitosa, ahora puedes redirigir al usuario
+            window.location.href = "front/paginaPrincipal.php";
+        },
+        invalidHandler: function(event, validator) {
+            // La validación no se cumple, muestra los mensajes de error en el elemento "errores".
+            alert("Por favor, completa correctamente todos los campos.");
         },
         errorPlacement: function(error, element) {
             if (element.is(":radio")) {

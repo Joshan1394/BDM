@@ -100,6 +100,7 @@
                                     </div>
 
                                 </div>
+
                                 <div class="row">
                                     <!-- Fecha de nacimiento -->
                                     <div class="col">
@@ -113,16 +114,16 @@
                                         </div>
                                         <div class="radio-buttons-container ">
                                             <div class="radio-button">
-                                                <input name="radio-group" id="radio2" class="radio-button__input" type="radio">
-                                                <label for="radio2" class="radio-button__label">
+                                                <input name="radioGroup1" id="radioComprador" class="radio-button__input" type="radio">
+                                                <label for="radioComprador" class="radio-button__label">
                                                     <span class="radio-button__custom"></span>
 
                                                     Comprador
                                                 </label>
                                             </div>
                                             <div class="radio-button">
-                                                <input name="radio-group" id="radio1" class="radio-button__input" type="radio">
-                                                <label for="radio1" class="radio-button__label">
+                                                <input name="radioGroup1" id="radioVendedor" class="radio-button__input" type="radio">
+                                                <label for="radioVendedor" class="radio-button__label">
                                                     <span class="radio-button__custom"></span>
 
                                                     Vendedor
@@ -143,24 +144,24 @@
                                         </div>
                                         <div class="radio-buttons-container">
                                             <div class="radio-button">
-                                                <input name="radio-group" id="radio2" class="radio-button__input" type="radio">
-                                                <label for="radio2" class="radio-button__label">
+                                                <input name="radioGroup" id="radioFemenino" class="radio-button__input" type="radio">
+                                                <label for="radioFemenino" class="radio-button__label">
                                                     <span class="radio-button__custom"></span>
 
                                                     Femenino
                                                 </label>
                                             </div>
                                             <div class="radio-button">
-                                                <input name="radio-group" id="radio1" class="radio-button__input" type="radio">
-                                                <label for="radio1" class="radio-button__label">
+                                                <input name="radioGroup" id="radioMasculino" class="radio-button__input" type="radio">
+                                                <label for="radioMasculino" class="radio-button__label">
                                                     <span class="radio-button__custom"></span>
 
                                                     Masculino
                                                 </label>
                                             </div>
                                             <div class="radio-button">
-                                                <input name="radio-group" id="radio3" class="radio-button__input" type="radio">
-                                                <label for="radio3" class="radio-button__label">
+                                                <input name="radioGroup" id="radioIndefinido" class="radio-button__input" type="radio">
+                                                <label for="radioIndefinido" class="radio-button__label">
                                                     <span class="radio-button__custom"></span>
 
                                                     Indefinido
@@ -178,6 +179,8 @@
                                 <div style="text-align:center">
                                     <a href="login.php">¿Ya tienes cuenta? <span style="color:rgb(178, 112, 146);">Ingresa </span></a>
                                 </div>
+                                <div id="errores" class="text-danger"></div>
+
 
                                 <button type="submit" class="mt-3 btn btn-primary" value="Enviar" form="formRegistro">Ingresar </button>
                         </form>
