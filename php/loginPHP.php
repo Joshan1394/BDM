@@ -39,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             session_start();
             $_SESSION['nombreUsuario'] = $nombreUsuario;
+          
             $_SESSION['apellidosUsuario'] = $apellidosUsuario;
             $_SESSION['emailUsuario'] = $emailUsuario;
             $_SESSION['fechaNacimientoUsuario'] = $fechaNacimientoUsuario;

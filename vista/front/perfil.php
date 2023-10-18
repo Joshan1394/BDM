@@ -115,8 +115,8 @@ session_start();
                 <div class="row align-items-center">
                     <div class="col align-self-center">
                         <div class="" style="background-color:transparent; border-color:transparent !important;">
-                      
-                         <img src="<?php echo $_SESSION['imagenUsuario']; ?>" alt="Imagen de perfil" style="border-radius: 50%; width: 20%;">
+
+                            <img src="<?php echo $_SESSION['imagenUsuario']; ?>" alt="Imagen de perfil" style="border-radius: 50%; width: 20%;">
 
 
                             <!-- PERFIL TITLE -->
@@ -129,8 +129,8 @@ session_start();
                                             <p class="mb-0">Nombre(s)</p>
                                         </div>
                                         <div class="col-sm-6 lign-self-center">
-                                            <!-- <p class=" mb-0"><?php echo $_SESSION['nombreUsuario']; ?></p> -->
-                                            <input type="text" class="form-control " placeholder="Nombre usuario" id="usuario" name="Usuario" value="<?php echo $_SESSION['nombreUsuario']; ?>">
+                                            <input type="text" class="form-control mt-2 mb-2" id="nombre" name="nombre" value="<?php echo $_SESSION['nombreUsuario']; ?>">
+
                                         </div>
                                     </div>
 
@@ -141,18 +141,30 @@ session_start();
                                             <p class="mb-0">Apellidos</p>
                                         </div>
                                         <div class="col-sm-6 lign-self-center">
-                                            <p class=" mb-0"><?php echo $_SESSION['apellidosUsuario']; ?></p>
+                                            <input type="text" class="form-control mt-2 mb-2" id="apellido" name="apellido" value="<?php echo $_SESSION['apellidosUsuario']; ?>">
                                         </div>
                                     </div>
 
+                                    <!-- <hr>
+                                     Apodo 
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <p class="mb-0">Apodo</p>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control mt-2 mb-2" id="apodo" name="apodo" value="<?php echo $_SESSION['apodoUsuario']; ?>">
+                                        </div>
+                                    </div> -->
+
                                     <hr>
+
                                     <!-- CORREO  -->
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <p class="mb-0">Correo</p>
                                         </div>
                                         <div class="col-sm-6">
-                                            <p class=" mb-0"><?php echo $_SESSION['emailUsuario']; ?></p>
+                                            <input type="text" class="form-control mt-2 mb-2" id="email" name="email" value="<?php echo $_SESSION['emailUsuario']; ?>">
                                         </div>
                                     </div>
 
@@ -163,7 +175,7 @@ session_start();
                                             <p class="mb-0">Fecha de nacimiento</p>
                                         </div>
                                         <div class="col-sm-6">
-                                            <p class=" mb-0"><?php echo $_SESSION['fechaNacimientoUsuario']; ?></p>
+                                            <input type="date" class="form-control mt-2 mb-2" id="fechaNacimiento" name="fechaNacimiento" value="<?php echo $_SESSION['fechaNacimientoUsuario']; ?>">
                                         </div>
                                     </div>
 
@@ -174,7 +186,29 @@ session_start();
                                             <p class="mb-0">Genero</p>
                                         </div>
                                         <div class="col-sm-6">
-                                            <p class=" mb-0"><?php echo $_SESSION['generoUsuario']; ?></p>
+                                            <div class="radio-buttons-container">
+                                                <div class="radio-button">
+                                                    <input name="genero" id="radioFemenino" class="radio-button__input" type="radio" value="Femenino" <?php if ($_SESSION['generoUsuario'] == 'Femenino') echo 'checked'; ?>>
+                                                    <label for="radioFemenino" class="radio-button__label">
+                                                        <span class="radio-button__custom"></span>
+                                                        Femenino
+                                                    </label>
+                                                </div>
+                                                <div class="radio-button">
+                                                    <input name="genero" id="radioMasculino" class="radio-button__input" type="radio" value="Masculino" <?php if ($_SESSION['generoUsuario'] == 'Masculino') echo 'checked'; ?>>
+                                                    <label for "radioMasculino" class="radio-button__label">
+                                                        <span class="radio-button__custom"></span>
+                                                        Masculino
+                                                    </label>
+                                                </div>
+                                                <div class="radio-button">
+                                                    <input name="genero" id="radioIndefinido" class="radio-button__input" type="radio" value="Indefinido" <?php if ($_SESSION['generoUsuario'] == 'Indefinido') echo 'checked'; ?>>
+                                                    <label for="radioIndefinido" class="radio-button__label">
+                                                        <span class="radio-button__custom"></span>
+                                                        Indefinido
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -185,8 +219,24 @@ session_start();
                                             <p class="mb-0">Rol</p>
                                         </div>
                                         <div class="col-sm-6">
-                                            <p class=" mb-0"><?php echo $_SESSION['tipoUsuario']; ?></p>
+                                            <div class="radio-buttons-container">
+                                                <div class="radio-button">
+                                                    <input name="tipo" id="radioComprador" class="radio-button__input" type="radio" value="Comprador" <?php if ($_SESSION['tipoUsuario'] == 'Comprador') echo 'checked'; ?>>
+                                                    <label for="radioComprador" class="radio-button__label">
+                                                        <span class="radio-button__custom"></span>
+                                                        Comprador
+                                                    </label>
+                                                </div>
+                                                <div class="radio-button">
+                                                    <input name="tipo" id="radioVendedor" class="radio-button__input" type="radio" value="Vendedor" <?php if ($_SESSION['tipoUsuario'] == 'Vendedor') echo 'checked'; ?>>
+                                                    <label for="radioVendedor" class="radio-button__label">
+                                                        <span class="radio-button__custom"></span>
+                                                        Vendedor
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
+
                                     </div>
 
                                     <hr>
