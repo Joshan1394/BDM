@@ -116,7 +116,7 @@ session_start();
                     <div class="col align-self-center">
                         <div class="" style="background-color:transparent; border-color:transparent !important;">
 
-                            <img src="<?php echo $_SESSION['imagenUsuario']; ?>" alt="Imagen de perfil" style="border-radius: 50%; width: 20%;">
+                            <img src="data:image/jpeg;base64,<?php echo $_SESSION['imagenUsuario']; ?>" alt="Imagen de perfil" style="border-radius: 50%; width: 20%;">
 
 
                             <!-- PERFIL TITLE -->
@@ -187,22 +187,22 @@ session_start();
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="radio-buttons-container">
-                                                <div class="radio-button">
-                                                    <input name="genero" id="radioFemenino" class="radio-button__input" type="radio" value="Femenino" <?php if ($_SESSION['generoUsuario'] == 'Femenino') echo 'checked'; ?>>
+                                                <div class="form-check mb-3">
+                                                    <input name="genero" id="radioFemenino" class="form-check-input ms-5" type="radio" value="Femenino" <?php if ($_SESSION['generoUsuario'] == 'Femenino') echo 'checked'; ?>>
                                                     <label for="radioFemenino" class="radio-button__label">
                                                         <span class="radio-button__custom"></span>
                                                         Femenino
                                                     </label>
                                                 </div>
-                                                <div class="radio-button">
-                                                    <input name="genero" id="radioMasculino" class="radio-button__input" type="radio" value="Masculino" <?php if ($_SESSION['generoUsuario'] == 'Masculino') echo 'checked'; ?>>
+                                                <div class="form-check mb-3">
+                                                    <input name="genero" id="radioMasculino" class="form-check-input ms-5" type="radio" value="Masculino" <?php if ($_SESSION['generoUsuario'] == 'Masculino') echo 'checked'; ?>>
                                                     <label for "radioMasculino" class="radio-button__label">
                                                         <span class="radio-button__custom"></span>
                                                         Masculino
                                                     </label>
                                                 </div>
-                                                <div class="radio-button">
-                                                    <input name="genero" id="radioIndefinido" class="radio-button__input" type="radio" value="Indefinido" <?php if ($_SESSION['generoUsuario'] == 'Indefinido') echo 'checked'; ?>>
+                                                <div class="form-check mb-3">
+                                                    <input name="genero" id="radioIndefinido" class="form-check-input ms-5" type="radio" value="Indefinido" <?php if ($_SESSION['generoUsuario'] == 'Indefinido') echo 'checked'; ?>>
                                                     <label for="radioIndefinido" class="radio-button__label">
                                                         <span class="radio-button__custom"></span>
                                                         Indefinido
@@ -214,21 +214,21 @@ session_start();
 
                                     <hr>
                                     <!-- ROLE -->
-                                    <div class="row">
+                                    <div class="row align-items-center">
                                         <div class="col-sm-6">
                                             <p class="mb-0">Rol</p>
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="radio-buttons-container">
-                                                <div class="radio-button">
-                                                    <input name="tipo" id="radioComprador" class="radio-button__input" type="radio" value="Comprador" <?php if ($_SESSION['tipoUsuario'] == 'Comprador') echo 'checked'; ?>>
-                                                    <label for="radioComprador" class="radio-button__label">
-                                                        <span class="radio-button__custom"></span>
-                                                        Comprador
+                                        <div class="col align-self-center">
+                                           
+                                            <div>
+                                                <div class="form-check mb-3">
+                                                    <input name="tipo" id="radioComprador" class="form-check-input ms-5" type="radio" value="Comprador" <?php if ($_SESSION['tipoUsuario'] == 'Comprador') echo 'checked'; ?>>
+                                                    <label for="radioComprador" class="form-check-label">
+                                                        <span class="radio-button__custom"></span>Comprador
                                                     </label>
                                                 </div>
-                                                <div class="radio-button">
-                                                    <input name="tipo" id="radioVendedor" class="radio-button__input" type="radio" value="Vendedor" <?php if ($_SESSION['tipoUsuario'] == 'Vendedor') echo 'checked'; ?>>
+                                                <div class="form-check">
+                                                    <input name="tipo" id="radioVendedor" class="form-check-input ms-5" type="radio" value="Vendedor" <?php if ($_SESSION['tipoUsuario'] == 'Vendedor') echo 'checked'; ?>>
                                                     <label for="radioVendedor" class="radio-button__label">
                                                         <span class="radio-button__custom"></span>
                                                         Vendedor
