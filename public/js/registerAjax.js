@@ -1,66 +1,104 @@
-const formulario  =  document.getElementById('formRegistro');
+$(document).ready(function () {
+    $('#formRegistro').validate({
+        rules: {
+            nombre: {
+                required: true,
+                minlength: 2, 
+                maxlength: 255 
+            },
+            apellido: {
+                required: true,
+                minlength: 2, 
+                maxlength: 255 
+            },
+            apodo: {
+                required: true,
+                minlength: 2, 
+                maxlength: 50 
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            password: {
+                required: true,
+                minlength: 6 
+            },
+            fechaNacimiento: {
+                required: true,
+                date: true
+            },
+            tipo: {
+                required: true
+            },
+            genero: {
+                required: true
+            },
+            imagen: {
+                required: true,
+                accept: "image/*" 
+            }
+        },
+        messages: {
+            nombre: {
+                required: "Por favor, ingresa tu nombre",
+                minlength: "El nombre debe tener al menos 2 caracteres",
+                maxlength: "El nombre no debe tener más de 255 caracteres"
+            },
+            apellido: {
+                required: "Por favor, ingresa tu apellido",
+                minlength: "El apellido debe tener al menos 2 caracteres",
+                maxlength: "El apellido no debe tener más de 255 caracteres"
+            },
+            apodo: {
+                required: "Por favor, ingresa tu apodo",
+                minlength: "El apodo debe tener al menos 2 caracteres",
+                maxlength: "El apodo no debe tener más de 50 caracteres"
+            },
+            email: {
+                required: "Por favor, ingresa tu correo electrónico",
+                email: "Ingresa una dirección de correo electrónico válida"
+            },
+            password: {
+                required: "Por favor, ingresa una contraseña",
+                minlength: "La contraseña debe tener al menos 6 caracteres"
+            },
+            fechaNacimiento: {
+                required: "Por favor, ingresa tu fecha de nacimiento",
+                date: "Ingresa una fecha de nacimiento válida"
+            },
+            tipo: {
+                required: "Selecciona un tipo (Comprador o Vendedor)"
+            },
+            genero: {
+                required: "Selecciona un género"
+            },
+            imagen: {
+                required: "Por favor, adjunta una imagen",
+                accept: "El archivo debe ser una imagen"
+            }
+        },
+        submitHandler: function (form) {
+            var formData = new FormData(form);
 
-formulario.addEventListener('submit', function(event) {
-
-    event.preventDefault();
-
-    $.ajax({
-        type: "POST",
-        async: true,
-        dataType: "json",
-        data:new FormData(formulario),
-        url: "php/registerApi.php",
-        cache: false,
-            contentType: false,
-            processData: false
-    }).done(function(response) {
-
-        const name  =  $('#inputName').next('span.text-danger');
-        const lastname  =  $('#inputLastName').next('span.text-danger');
-        const date  =  $('#inputBirthDate').next('span.text-danger');
-        const email  =  $('#textCE').next('span.text-danger');
-        const password  =  $('txtPassword').next('span.text-danger');
-        const gender  =  $('#flexRadioDefault').next('span.text-danger');
-        const rol  =  $('#Rol').next('span.text-danger');
-
-        name.text("");
-        lastname.text("");
-        date.text("");
-        email.text("");
-        password.text("");
-        gender.text("");
-        rol.text("");
-
-        if(response.data.name){
-            name.text(response.data.name)
+            $.ajax({
+                type: 'POST',
+                url: '/BDM/php/APIRegistro.php',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    var data = JSON.parse(response);
+                    if (data.message) {
+                     
+                        window.location.href = "/BDM/vista/front/login.php";
+                    } else if (data.error) {
+                        
+                        alert("Error en el registro: " + data.error);
+                    }
+                }
+            });
         }
-
-        if(response.data.lastname){
-            lastname.text(response.data.lastname)
-        }
-
-        if(response.data.date){
-            date.text(response.data.date)
-        }
-
-        if(response.data.email){
-            email.text(response.data.email)
-        }
-
-        if(response.data.password){
-            password.text(response.data.password)
-        }
-
-        if(response.data.gender){
-            gender.text(response.data.gender)
-        }
-
-        if(response.data.rol){
-            rol.text(response.data.rol)
-        }
-
-    }).fail(function(response) {
-
     });
-
 });
+

@@ -20,7 +20,10 @@
     <!-- Style -->
     <link rel="stylesheet" href="/BDM/public/css/login.css">
 
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/localization/messages_es.js"></script>
+    <script src="/BDM/public/js/registerAjax.js"></script>
 
 
     <title>Registro</title>
@@ -60,132 +63,116 @@
                             <h3 class="title">Registro</h3>
                             <p class="mb-4"></p>
                         </div>
-                        <form action="#" class="signin-form" id="formRegistro" name="formRegistro" method="POST">
+                        <form action="/BDM/php/APIRegistro.php" method="POST" id="formRegistro" name="formRegistro" enctype="multipart/form-data">
                             <div class="text-center">
                                 <div class="row">
                                     <!-- Nombre -->
                                     <div class="col">
-                                        <input type="text" class="form-control mt-2 mb-2" placeholder="Nombre" id="nombre" name="nombre">
-                                        <!-- <span class="text-danger error-message"></span> -->
+                                        <label for="nombre">Nombre:</label>
+                                        <input type="text" class="form-control mt-2 mb-2" id="nombre" name="nombre">
+                                        <span class="text-danger error-message"></span>
                                     </div>
                                     <!-- Apellido -->
                                     <div class="col">
-                                        <input type="text" class="form-control mt-2 mb-2" id="apellido" name="apellido" placeholder="Apellidos">
-                                        <!-- <span class="text-danger error-message"></span> -->
+                                        <label for="apellido">Apellido:</label>
+                                        <input type="text" class="form-control mt-2 mb-2" id="apellido" name="apellido">
+                                        <span class="text-danger error-message"></span>
                                     </div>
-
                                 </div>
                                 <div class="row">
                                     <!-- Apodo -->
                                     <div class="col">
-                                        <input type="text" class="form-control mt-2 mb-2" placeholder="Nombre de usuario" id="apodo" name="apodo">
-                                        <!-- <span class="text-danger error-message"></span> -->
+                                        <label for="apodo">Nombre de usuario:</label>
+                                        <input type="text" class="form-control mt-2 mb-2" id="apodo" name="apodo">
+                                        <span class="text-danger error-message"></span>
                                     </div>
                                     <!-- Imagen -->
                                     <div class="col">
-                                        <input class="file-input mt-2 mb-2" type="file" id="images" name="image" accept="image/*">
+                                        <label for="imagen">Imagen de perfil:</label>
+                                        <input class="file-input mt-2 mb-2" type="file" id="imagen" name="imagen" accept="image/*">
                                     </div>
-
                                 </div>
                                 <div class="row">
                                     <!-- Email -->
                                     <div class="col">
-                                        <input type="text" class="form-control mt-2 mb-2" placeholder="Correo eléctronico" id="email" name="email">
-                                        <!-- <span class="text-danger error-message"></span> -->
+                                        <label for="email">Correo electrónico:</label>
+                                        <input type="text" class="form-control mt-2 mb-2" id="email" name="email">
+                                        <span class="text-danger error-message"></span>
                                     </div>
                                     <!-- Contraseña -->
                                     <div class="col">
-                                        <input type="password" class="form-control mt-2 mb-2" id="password" name="password" placeholder="Contraseña">
-                                        <!-- <span class="text-danger error-message"></span> -->
+                                        <label for="password">Contraseña:</label>
+                                        <input type="password" class="form-control mt-2 mb-2" id="password" name="password">
+                                        <span class="text-danger error-message"></span>
                                     </div>
-
                                 </div>
-
                                 <div class="row">
                                     <!-- Fecha de nacimiento -->
                                     <div class="col">
-                                        <input type="date" class="form-control mt-2 mb-2" id="date" name="fechaNacimiento" placeholder="Fecha de nacimiento">
-                                        <!-- <span class="text-danger error-message"></span> -->
+                                        <label for="fechaNacimiento">Fecha de nacimiento:</label>
+                                        <input type="date" class="form-control mt-2 mb-2" id="fechaNacimiento" name="fechaNacimiento">
+                                        <span class="text-danger error-message"></span>
                                     </div>
                                     <!-- Tipo -->
-                                    <div class="col align-self-start ">
-                                        <div class="d-flex align-items-start">
-                                            <label for="formFile" class="form-label">Tipo:</label>
-                                        </div>
-                                        <div class="radio-buttons-container ">
+                                    <div class="col align-self-start">
+                                        <label for="tipo">Tipo:</label>
+                                        <div class="radio-buttons-container">
                                             <div class="radio-button">
-                                                <input name="radioGroup1" id="radioComprador" class="radio-button__input" type="radio">
+                                                <input name="tipo" id="radioComprador" class="radio-button__input" type="radio" value="Comprador">
                                                 <label for="radioComprador" class="radio-button__label">
                                                     <span class="radio-button__custom"></span>
-
                                                     Comprador
                                                 </label>
                                             </div>
                                             <div class="radio-button">
-                                                <input name="radioGroup1" id="radioVendedor" class="radio-button__input" type="radio">
+                                                <input name="tipo" id="radioVendedor" class="radio-button__input" type="radio" value="Vendedor">
                                                 <label for="radioVendedor" class="radio-button__label">
                                                     <span class="radio-button__custom"></span>
-
                                                     Vendedor
                                                 </label>
                                             </div>
-
                                         </div>
-
+                                        <span class="text-danger error-message"></span>
                                     </div>
-
                                 </div>
-
                                 <div class="row">
-                                    <!-- Genero -->
+                                    <!-- Género -->
                                     <div class="col">
-                                        <div class="d-flex align-items-start">
-                                            <label for="formFile" class="form-label">Genero</label>
-                                        </div>
+                                        <label for="genero">Género:</label>
                                         <div class="radio-buttons-container">
                                             <div class="radio-button">
-                                                <input name="radioGroup" id="radioFemenino" class="radio-button__input" type="radio">
+                                                <input name="genero" id="radioFemenino" class="radio-button__input" type="radio" value="Femenino">
                                                 <label for="radioFemenino" class="radio-button__label">
                                                     <span class="radio-button__custom"></span>
-
                                                     Femenino
                                                 </label>
                                             </div>
                                             <div class="radio-button">
-                                                <input name="radioGroup" id="radioMasculino" class="radio-button__input" type="radio">
+                                                <input name="genero" id="radioMasculino" class="radio-button__input" type="radio" value="Masculino">
                                                 <label for="radioMasculino" class="radio-button__label">
                                                     <span class="radio-button__custom"></span>
-
                                                     Masculino
                                                 </label>
                                             </div>
                                             <div class="radio-button">
-                                                <input name="radioGroup" id="radioIndefinido" class="radio-button__input" type="radio">
+                                                <input name="genero" id="radioIndefinido" class="radio-button__input" type="radio" value="Indefinido">
                                                 <label for="radioIndefinido" class="radio-button__label">
                                                     <span class="radio-button__custom"></span>
-
                                                     Indefinido
                                                 </label>
                                             </div>
                                         </div>
-
-
+                                        <span class="text-danger error-message"></span>
                                     </div>
-
                                 </div>
-
-
                                 <hr class="mt-3" size="2px" color="skyblue">
                                 <div style="text-align:center">
                                     <a href="login.php">¿Ya tienes cuenta? <span style="color:rgb(178, 112, 146);">Ingresa </span></a>
                                 </div>
                                 <div id="errores" class="text-danger"></div>
-
-
-                                <button type="submit" class="mt-3 btn btn-primary" value="Enviar" form="formRegistro">Ingresar </button>
+                                <button type="submit" class="mt-3 btn btn-primary" value="Enviar">Registrarse</button>
+                            </div>
                         </form>
-
-
 
                     </div>
                 </div>
@@ -194,12 +181,9 @@
 
 
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/localization/messages_es.js"></script>
-    <script language="javascript" type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/localization/messages_es.js"></script>
-    <script src="/BDM/public/js/register.js"></script>
+
 </body>
 
 </html>

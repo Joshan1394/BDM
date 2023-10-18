@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
 
@@ -53,6 +56,10 @@
     <!-- STYLE END -->
 
 </head>
+
+
+
+
 <!-- HEAD END -->
 <nav class="navbar navbar-expand-md  fixed-top nav-background" role="navigation">
     <div class="container-fluid">
@@ -67,7 +74,7 @@
             </form>
         </div>
 
-        <div id="menuToggle" class="me-1">
+        <div id="menuToggle" class="me-3">
 
             <input type="checkbox" />
             <span></span>
@@ -108,7 +115,10 @@
                 <div class="row align-items-center">
                     <div class="col align-self-center">
                         <div class="" style="background-color:transparent; border-color:transparent !important;">
-                            <img src="https://static.vecteezy.com/system/resources/previews/008/442/086/non_2x/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg" class="card-img-top mt-2" alt="..." style="border-radius:50%; width:20%;">
+                      
+                         <img src="<?php echo $_SESSION['imagenUsuario']; ?>" alt="Imagen de perfil" style="border-radius: 50%; width: 20%;">
+
+
                             <!-- PERFIL TITLE -->
                             <div class=" text" style=" background-color:transparent !important; border-color:transparent !important">
                                 <div class="card-body">
@@ -119,7 +129,8 @@
                                             <p class="mb-0">Nombre(s)</p>
                                         </div>
                                         <div class="col-sm-6 lign-self-center">
-                                            <p class=" mb-0">Leonardo Salvador</p>
+                                            <!-- <p class=" mb-0"><?php echo $_SESSION['nombreUsuario']; ?></p> -->
+                                            <input type="text" class="form-control " placeholder="Nombre usuario" id="usuario" name="Usuario" value="<?php echo $_SESSION['nombreUsuario']; ?>">
                                         </div>
                                     </div>
 
@@ -130,7 +141,7 @@
                                             <p class="mb-0">Apellidos</p>
                                         </div>
                                         <div class="col-sm-6 lign-self-center">
-                                            <p class=" mb-0">Hernández Pérez</p>
+                                            <p class=" mb-0"><?php echo $_SESSION['apellidosUsuario']; ?></p>
                                         </div>
                                     </div>
 
@@ -141,7 +152,7 @@
                                             <p class="mb-0">Correo</p>
                                         </div>
                                         <div class="col-sm-6">
-                                            <p class=" mb-0">example@gmail.com</p>
+                                            <p class=" mb-0"><?php echo $_SESSION['emailUsuario']; ?></p>
                                         </div>
                                     </div>
 
@@ -152,7 +163,7 @@
                                             <p class="mb-0">Fecha de nacimiento</p>
                                         </div>
                                         <div class="col-sm-6">
-                                            <p class=" mb-0">13/04/2000</p>
+                                            <p class=" mb-0"><?php echo $_SESSION['fechaNacimientoUsuario']; ?></p>
                                         </div>
                                     </div>
 
@@ -163,7 +174,7 @@
                                             <p class="mb-0">Genero</p>
                                         </div>
                                         <div class="col-sm-6">
-                                            <p class=" mb-0">Masculino</p>
+                                            <p class=" mb-0"><?php echo $_SESSION['generoUsuario']; ?></p>
                                         </div>
                                     </div>
 
@@ -174,7 +185,7 @@
                                             <p class="mb-0">Rol</p>
                                         </div>
                                         <div class="col-sm-6">
-                                            <p class=" mb-0">Estudiante</p>
+                                            <p class=" mb-0"><?php echo $_SESSION['tipoUsuario']; ?></p>
                                         </div>
                                     </div>
 

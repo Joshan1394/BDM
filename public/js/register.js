@@ -1,184 +1,115 @@
 $(document).ready(function() {
-
-    // VALIDACION DE CONTRASEÑA
-    $('input[id=password]').keyup(function() {
-        // keyup code here
-
-        var pswd = $(this).val();
-        //validate the length
-        if (pswd.length < 8) {
-            $('#length').removeClass('valid').addClass('invalid');
-
-        } else {
-            $('#length').removeClass('invalid').addClass('valid');
-        }
-        //validate letter
-        if (pswd.match(/[A-z]/)) {
-            $('#letter').removeClass('invalid').addClass('valid');
-        } else {
-            $('#letter').removeClass('valid').addClass('invalid');
-
-        }
-        //validate letter
-        if (pswd.match(/[/., $@()]/)) {
-            $('#especial').removeClass('invalid').addClass('valid');
-        } else {
-            $('#especial').removeClass('valid').addClass('invalid');
-        }
-        //validate capital letter
-        if (pswd.match(/[A-Z]/)) {
-            $('#capital').removeClass('invalid').addClass('valid');
-        } else {
-            $('#capital').removeClass('valid').addClass('invalid');
-        }
-        //validate number
-        if (pswd.match(/\d/)) {
-            $('#number').removeClass('invalid').addClass('valid');
-        } else {
-            $('#number').removeClass('valid').addClass('invalid');
-        }
-    // }).focus(function() {
-    //     $('#pswd_info').show();
-    // }).blur(function() {
-    //     $('#pswd_info').hide();
-    });
-   
-});
-
-
-
-function filterFloat(evt, input) {
-    // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
-    var key = window.Event ? evt.which : evt.keyCode;
-    var chark = String.fromCharCode(key);
-    var tempValue = input.value + chark;
-    if (key >= 48 && key <= 57) {
-        if (filter(tempValue) === false) {
-            return false;
-        } else {
-            return true;
-        }
-    } else {
-        if (key == 8 || key == 13 || key == 0) {
-            return true;
-        } else if (key == 46) {
-            if (filter(tempValue) === false) {
-                return false;
-            } else {
-                return true;
-            }
-        } else {
-            return false;
-        }
-    }
-}
-
-function filter(__val__) {
-    var preg = /^([0-9]+\.?[0-9]{0,2})$/;
-    if (preg.test(__val__) === true) {
-        return true;
-    } else {
-        return false;
-    }
-
-}
-
-
-jQuery.validator.addMethod("soloLetrasYEspacios",
-    function(value, element) {
-        return /^[a-zA-Z ]+$/.test(value);
-    },
-    "Nada de caracteres especiales, por favor"
-);
-
-jQuery.validator.addMethod("ValidarEmail",
-    function(value, element) {
-        return /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/.test(value);
-    },
-    "Ingresa un correo valido"
-);
-
-jQuery.validator.addMethod("pwcheck", function(value) {
-    return /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%&])(.{8,20}$)/.test(value) // consists of only these
-
-});
-
-jQuery(function() {
-    jQuery("#formRegistro").validate({
+ 
+    $("#formRegistro").validate({
         rules: {
             nombre: {
                 required: true,
-                soloLetrasYEspacios: true
+                letterswithspaces: true
             },
             apellido: {
                 required: true,
-                soloLetrasYEspacios: true
+                letterswithspaces: true
             },
             apodo: {
                 required: true,
-                soloLetrasYEspacios: true
+                letterswithspaces: true
             },
-            image: {
+            imagen: {
                 required: true
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            password: {
+                required: true,
+                minlength: 8
+            },
+            inputContra2: {
+                required: true,
+                equalTo: "#password"
             },
             fechaNacimiento: {
                 required: true
             },
-            radioGroup1: {
-                required: true
-            },
-            radioGroup: {
-                required: true
-            },
-            
-            email: {
-                required: true,
-                ValidarEmail: true
-            },
-            password: {
-                required: true,
-                minlength: 8,
-                // pwcheck: true
-            },
-            inputContra2: {
-                required: true,
-                equalTo: "#txtPassword"
-            },
-            InputImg: {
-                required: true
-            }
+           
         },
         messages: {
             password: {
-                minlength: $.format("Necesitamos por lo menos {8} caracteres"),
-                
+                minlength: "Necesitamos al menos 8 caracteres"
             },
             nombre: {
-                soloLetrasYEspacios: $.format("Solo ingresa letras")
+                letterswithspaces: "Solo ingresa letras"
             },
             email: {
-                ValidarEmail: $.format("Ingresa un correo valido")
+                email: "Ingresa un correo válido"
             }
-        },
-        submitHandler: function(form) {
-            // La validación ha sido exitosa, ahora puedes redirigir al usuario
-            window.location.href = "front/paginaPrincipal.php";
-        },
-        invalidHandler: function(event, validator) {
-            // La validación no se cumple, muestra los mensajes de error en el elemento "errores".
-            alert("Por favor, completa correctamente todos los campos.");
         },
         errorPlacement: function(error, element) {
             if (element.is(":radio")) {
-                error.appendTo(element.parents('.mensaje1Error'));
-            } else if (element.is("#txtPassword")) {
-                error.appendTo(element.parents('.mensaje1Error'));
-            } else if (element.is("#txtPassword2")) {
-                error.appendTo(element.parents('.mensaje1Error'));
-            } else { // This is the default behavior 
+                error.appendTo(element.parents('div'));
+            } else {
                 error.insertAfter(element);
             }
-        }
+        },
+        submitHandler: function(form) {
+    
+            $.ajax({
+                type: "POST",
+                async: true,
+                dataType: "json",
+                data: new FormData(form),
+                url: "/BDM/php/registerPHP.php", 
+                cache: false,
+                contentType: false,
+                processData: false
+            }).done(function(response) {
+             
+                clearErrorMessages();
 
+            
+                displayErrorMessages(response.data);
+
+                if (response.success) {
+                    alert("Registro exitoso. Serás redirigido a la página de inicio de sesión.");
+                    window.location.href = "login.php"; 
+                }
+            }).fail(function(response) {
+                console.error("Error en la solicitud AJAX");
+            });
+        }
     });
+
+    $.validator.addMethod("letterswithspaces", function(value, element) {
+        return /^[a-zA-Z ]+$/.test(value);
+    }, "Solo ingresa letras");
 });
+
+function clearErrorMessages() {
+    const errorSpans = document.querySelectorAll('span.text-danger');
+    errorSpans.forEach(span => {
+        span.textContent = "";
+    });
+}
+
+function displayErrorMessages(errors) {
+    const fieldMapping = {
+        nombre: '#nombre',
+        apellido: '#apellido',
+        apodo: '#apodo',
+        imagen: '#imagen',
+        email: '#email',
+        password: '#password',
+        fechaNacimiento: '#date',
+        radioGroup1: 'input[name="radioGroup1"]',
+        radioGroup: 'input[name="radioGroup"]'
+    };
+
+    for (const key in errors) {
+        if (errors.hasOwnProperty(key) && fieldMapping[key]) {
+            const errorMessage = errors[key];
+            const errorSpan = $(fieldMapping[key]).next('span.text-danger');
+            errorSpan.text(errorMessage);
+        }
+    }
+}

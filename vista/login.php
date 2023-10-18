@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="/BDM/public/css/owl.carousel.min.css"> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/BDM/public/css/bootstrap.min.css">
@@ -20,17 +22,18 @@
     <!-- Style -->
     <link rel="stylesheet" href="/BDM/public/css/login.css">
 
-
-
-
     <title>Inicio de sesión</title>
 
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 
     <style>
-        .error-message {
-            color: rgb(161, 159, 247) !important;
-            margin-left: 6px !important;
+       input.error {
+            border: 1px dashed rgb(255, 51, 0);
+        }
+
+        label.error {
+            float: none;
+            color: red;
         }
 
         .title {
@@ -55,69 +58,25 @@
                             <h3 class="title">Iniciar Sesión</h3>
                             <p class="mb-4"></p>
                         </div>
-                        <form method="POST" action="#" class="signin-form">
+                        <form method="POST" id="formulario_is" name="formulario_is" action="/BDM/php/loginPHP.php" class="signin-form">
                             <div class="text-center">
-                               
-                                
                                 <div class="row">
                                     <div class="col">
-
-                                        <input type="text" class="form-control" placeholder="Correo eléctronico" id="email" name="email">
-
-                                        <span class="text-danger error-message"></span>
-
-
+                                        <input type="text" class="form-control " placeholder="Nombre usuario" id="usuario" name="Usuario">
+                                        
                                     </div>
                                     <div class="col">
-
-                                        <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">
-
-                                        <span class="text-danger error-message"></span>
-
+                                        <input type="password" class="form-control " id="password" name="Contra1" placeholder="Contraseña">
+                                        
                                     </div>
-
                                 </div>
-                                <div class="row justify-content-center">
-
-                                
-                                    <div class="col align-self-center ">
-                                        <div class="">
-                                            <label for="formFile" class="form-label">Tipo:</label>
-                                        </div>
-                                        <div class=" radio-button radio-buttons-container ">
-                                            <div class="me-3 radio-button">
-                                                <input name="radio-group" id="radio2" class="radio-button__input" type="radio">
-                                                <label for="radio2" class="radio-button__label">
-                                                    <span class="radio-button__custom"></span>
-
-                                                    Comprador
-                                                </label>
-                                            </div>
-                                            <div class="radio-button">
-                                                <input name="radio-group" id="radio1" class="radio-button__input" type="radio">
-                                                <label for="radio1" class="radio-button__label">
-                                                    <span class="radio-button__custom"></span>
-
-                                                    Vendedor
-                                                </label>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            
                                 <hr class="mt-5" size="2px" color="skyblue">
-                                <div style="text-align:center" >
-                                    <a href="register.php">¿Aun no tienes cuenta? <span style="color:rgb(178, 112, 146);">Registrate </span></a>
+                                <div style="text-align:center">
+                                    <a href="register.php">¿Aún no tienes cuenta? <span style="color:rgb(178, 112, 146);">Regístrate </span></a>
                                 </div>
-
-                                <button type="submit" class="mt-3 btn btn-primary">Ingresar </button>
+                                <button type="submit" class="mt-3 btn btn-primary" value="Enviar">Ingresar</button>
+                            </div>
                         </form>
-
-
-
                     </div>
                 </div>
             </div>
@@ -130,10 +89,11 @@
         feather.replace()
     </script>
 
-    <script src="/public/js/jquery-3.3.1.min.js"></script>
-    <script src="/public/js/popper.min.js'"></script>
-    <script src="/public/js/bootstrap.min.js"></script>
-    <script src="/public/js/login.js'"></script>
+
+    
+    <!-- <script src="/public/js/login.js'"></script> -->
+    <!-- <script src="/public/js/validacionLogin.js"></script> -->
+    <script src="/BDM/public/js/validacionesLoginJQ.js"></script>
 </body>
 
 </html>

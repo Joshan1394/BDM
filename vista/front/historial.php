@@ -113,7 +113,7 @@
                 </form>
             </div>
 
-            <div id="menuToggle" class="me-1">
+            <div id="menuToggle" class="me-3">
 
                 <input type="checkbox" />
                 <span></span>
