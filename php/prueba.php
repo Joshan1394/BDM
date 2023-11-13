@@ -8,7 +8,7 @@ if (isset($_SESSION['usuario_id'])) {
     $dbname = "bd_bdm";
 
 
-    $usuario_id = $_SESSION['usuario_id'];
+    $usuario_id = 20;
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 

@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $generoUsuario = $user["genero"];
             $tipoUsuario = $user["tipo"];
             $rutaDeImagenDelUsuario = $user["imagen"];
-            
+            $idUsuario = $user['id'];
             session_start();
             $_SESSION['nombreUsuario'] = $nombreUsuario;
             $_SESSION['apellidosUsuario'] = $apellidosUsuario;
@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['tipoUsuario'] = $tipoUsuario;
             $imagenBase64 = base64_encode($rutaDeImagenDelUsuario);
             $_SESSION['imagenUsuario'] = $imagenBase64; 
-          
+            $_SESSION['idUsuario'] = $idUsuario;
             header("Location: /BDM/vista/front/perfil.php"); 
             exit();
         } else {

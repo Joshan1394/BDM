@@ -107,7 +107,7 @@ session_start();
         <div class="card text-center" style="margin-left:5%; margin-right:5%; border-color:transparent">
             <!-- PERFIL HEAD START -->
             <div class="card-header" style="background-color:rgb(70, 100, 158)">
-                Perfile
+                Perfil
             </div>
             <!-- PERFIL HEAD END -->
             <!-- PERFIL BODY START -->
@@ -115,141 +115,139 @@ session_start();
                 <div class="row align-items-center">
                     <div class="col align-self-center">
                         <div class="" style="background-color:transparent; border-color:transparent !important;">
-
-                            <img src="data:image/jpeg;base64,<?php echo $_SESSION['imagenUsuario']; ?>" alt="Imagen de perfil" style="border-radius: 50%; width: 20%;">
-
-
-                            <!-- PERFIL TITLE -->
-                            <div class=" text" style=" background-color:transparent !important; border-color:transparent !important">
-                                <div class="card-body">
-                                    <h5 class="card-title">Datos del usuario</h5>
-                                    <!-- NAME -->
-                                    <div class="row">
-                                        <div class="col-sm-6 lign-self-center">
-                                            <p class="mb-0">Nombre(s)</p>
-                                        </div>
-                                        <div class="col-sm-6 lign-self-center">
-                                            <input type="text" class="form-control mt-2 mb-2" id="nombre" name="nombre" value="<?php echo $_SESSION['nombreUsuario']; ?>">
-
+                            <form action="/BDM/php/editarPerfil.php" method="POST" id="formEditar" name="formEditar" enctype="multipart/form-data">
+                                <img src="data:image/jpeg;base64,<?php echo $_SESSION['imagenUsuario']; ?>" alt="Imagen de perfil" style="border-radius: 50%; width: 20%;">
+                                <div class="container text-center">
+                                    <div class="row justify-content-center mt-3">
+                                        <div class="col-sm-5 align-self-center">
+                                            <input class="form-control" type="file" id="formImagen" name="imagen">
                                         </div>
                                     </div>
-
-                                    <hr>
-                                    <!-- LAST NAME -->
-                                    <div class="row">
-                                        <div class="col-sm-6 lign-self-center">
-                                            <p class="mb-0">Apellidos</p>
-                                        </div>
-                                        <div class="col-sm-6 lign-self-center">
-                                            <input type="text" class="form-control mt-2 mb-2" id="apellido" name="apellido" value="<?php echo $_SESSION['apellidosUsuario']; ?>">
-                                        </div>
-                                    </div>
-
-                                    <!-- <hr>
-                                     Apodo 
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <p class="mb-0">Apodo</p>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control mt-2 mb-2" id="apodo" name="apodo" value="<?php echo $_SESSION['apodoUsuario']; ?>">
-                                        </div>
-                                    </div> -->
-
-                                    <hr>
-
-                                    <!-- CORREO  -->
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <p class="mb-0">Correo</p>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control mt-2 mb-2" id="email" name="email" value="<?php echo $_SESSION['emailUsuario']; ?>">
-                                        </div>
-                                    </div>
-
-                                    <hr>
-                                    <!-- DATE -->
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <p class="mb-0">Fecha de nacimiento</p>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <input type="date" class="form-control mt-2 mb-2" id="fechaNacimiento" name="fechaNacimiento" value="<?php echo $_SESSION['fechaNacimientoUsuario']; ?>">
-                                        </div>
-                                    </div>
-
-                                    <hr>
-                                    <!-- GENDER -->
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <p class="mb-0">Genero</p>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="radio-buttons-container">
-                                                <div class="form-check mb-3">
-                                                    <input name="genero" id="radioFemenino" class="form-check-input ms-5" type="radio" value="Femenino" <?php if ($_SESSION['generoUsuario'] == 'Femenino') echo 'checked'; ?>>
-                                                    <label for="radioFemenino" class="radio-button__label">
-                                                        <span class="radio-button__custom"></span>
-                                                        Femenino
-                                                    </label>
-                                                </div>
-                                                <div class="form-check mb-3">
-                                                    <input name="genero" id="radioMasculino" class="form-check-input ms-5" type="radio" value="Masculino" <?php if ($_SESSION['generoUsuario'] == 'Masculino') echo 'checked'; ?>>
-                                                    <label for "radioMasculino" class="radio-button__label">
-                                                        <span class="radio-button__custom"></span>
-                                                        Masculino
-                                                    </label>
-                                                </div>
-                                                <div class="form-check mb-3">
-                                                    <input name="genero" id="radioIndefinido" class="form-check-input ms-5" type="radio" value="Indefinido" <?php if ($_SESSION['generoUsuario'] == 'Indefinido') echo 'checked'; ?>>
-                                                    <label for="radioIndefinido" class="radio-button__label">
-                                                        <span class="radio-button__custom"></span>
-                                                        Indefinido
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <hr>
-                                    <!-- ROLE -->
-                                    <div class="row align-items-center">
-                                        <div class="col-sm-6">
-                                            <p class="mb-0">Rol</p>
-                                        </div>
-                                        <div class="col align-self-center">
-                                           
-                                            <div>
-                                                <div class="form-check mb-3">
-                                                    <input name="tipo" id="radioComprador" class="form-check-input ms-5" type="radio" value="Comprador" <?php if ($_SESSION['tipoUsuario'] == 'Comprador') echo 'checked'; ?>>
-                                                    <label for="radioComprador" class="form-check-label">
-                                                        <span class="radio-button__custom"></span>Comprador
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input name="tipo" id="radioVendedor" class="form-check-input ms-5" type="radio" value="Vendedor" <?php if ($_SESSION['tipoUsuario'] == 'Vendedor') echo 'checked'; ?>>
-                                                    <label for="radioVendedor" class="radio-button__label">
-                                                        <span class="radio-button__custom"></span>
-                                                        Vendedor
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <hr>
-                                    <!-- EDIT -->
-                                    <button class="btn btn-sumit" type="submit">Editar</button>
-                                    <button class="btn btn-sumit" id="openModalBtn">Agregar producto</button>
-
                                 </div>
-                            </div>
+                                <!-- PERFIL TITLE -->
+                                <div class=" text" style=" background-color:transparent !important; border-color:transparent !important">
+                                    <div class="card-body">
+                                        <h5 class="card-title mb-3">Datos del usuario</h5>
+                                        <input type="hidden" name="id" value="<?php echo $_SESSION['idUsuario']; ?>">
+                                        <!-- NAME -->
+                                        <div class="row ">
+                                            <div class="col-sm-7">
+                                                <p class="mb-0">Nombre(s)</p>
+                                            </div>
+                                            <div class="col-sm-3 ">
+                                                <input type="text" class="form-control mt-2 mb-2" id="nombre" name="nombre" value="<?php echo $_SESSION['nombreUsuario']; ?>">
+
+                                            </div>
+                                        </div>
+
+                                        <hr>
+                                        <!-- LAST NAME -->
+                                        <div class="row">
+                                            <div class="col-sm-7">
+                                                <p class="mb-0">Apellidos</p>
+                                            </div>
+                                            <div class="col-sm-3 ">
+                                                <input type="text" class="form-control mt-2 mb-2" id="apellido" name="apellido" value="<?php echo $_SESSION['apellidosUsuario']; ?>">
+                                            </div>
+                                        </div>
+
+
+
+                                        <hr>
+
+                                        <!-- CORREO  -->
+                                        <div class="row">
+                                            <div class="col-sm-7">
+                                                <p class="mb-0">Correo</p>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <input type="text" class="form-control mt-2 mb-2" id="email" name="email" value="<?php echo $_SESSION['emailUsuario']; ?>">
+                                            </div>
+                                        </div>
+
+                                        <hr>
+                                        <!-- DATE -->
+                                        <div class="row">
+                                            <div class="col-sm-7">
+                                                <p class="mb-0">Fecha de nacimiento</p>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <input type="date" class="form-control mt-2 mb-2" id="fechaNacimiento" name="fechaNacimiento" value="<?php echo $_SESSION['fechaNacimientoUsuario']; ?>">
+                                            </div>
+                                        </div>
+
+                                        <hr>
+                                        <!-- GENDER -->
+                                        <div class="row">
+                                            <div class="col-sm-7">
+                                                <p class="mb-0">Genero</p>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="radio-buttons-container">
+                                                    <div class="form-check mb-3">
+                                                        <input name="genero" id="radioFemenino" class="form-check-input ms-2" type="radio" value="Femenino" <?php if ($_SESSION['generoUsuario'] == 'Femenino') echo 'checked'; ?>>
+                                                        <label for="radioFemenino" class="radio-button__label">
+                                                            <span class="radio-button__custom"></span>
+                                                            Femenino
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check mb-3">
+                                                        <input name="genero" id="radioMasculino" class="form-check-input ms-2" type="radio" value="Masculino" <?php if ($_SESSION['generoUsuario'] == 'Masculino') echo 'checked'; ?>>
+                                                        <label for "radioMasculino" class="radio-button__label">
+                                                            <span class="radio-button__custom"></span>
+                                                            Masculino
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check mb-3">
+                                                        <input name="genero" id="radioIndefinido" class="form-check-input ms-2" type="radio" value="Indefinido" <?php if ($_SESSION['generoUsuario'] == 'Indefinido') echo 'checked'; ?>>
+                                                        <label for="radioIndefinido" class="radio-button__label">
+                                                            <span class="radio-button__custom"></span>
+                                                            Indefinido
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <hr>
+                                        <!-- ROLE -->
+                                        <div class="row align-items-center">
+                                            <div class="col-sm-7">
+                                                <p class="mb-0">Rol</p>
+                                            </div>
+                                            <div class="col-sm-3">
+
+                                                <div>
+                                                    <div class="form-check mb-3">
+                                                        <input name="tipo" id="radioComprador" class="form-check-input ms-2" type="radio" value="Comprador" <?php if ($_SESSION['tipoUsuario'] == 'Comprador') echo 'checked'; ?>>
+                                                        <label for="radioComprador" class="form-check-label">
+                                                            <span class="radio-button__custom"></span>Comprador
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input name="tipo" id="radioVendedor" class="form-check-input ms-2" type="radio" value="Vendedor" <?php if ($_SESSION['tipoUsuario'] == 'Vendedor') echo 'checked'; ?>>
+                                                        <label for="radioVendedor" class="radio-button__label">
+                                                            <span class="radio-button__custom"></span>
+                                                            Vendedor
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <hr>
+                                        <!-- EDIT -->
+                                        <button class="btn btn-sumit" type="submit">Editar</button>
+                            </form>
+                            <button class="btn btn-sumit" id="openModalBtn">Agregar producto</button>
+
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        </div>
         </div>
         <div id="myModal" class="modal ">
             <div class="modal-content w-50">
