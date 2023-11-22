@@ -40,9 +40,14 @@ function closeModal() {
 btn.onclick = function() {
     modal.style.display = "block";
     showStep(currentStep);
+
+
 }
 
 closeBtn.onclick = closeModal;
+
+
+
 
 // Manejar eventos de los botones de navegación entre pasos
 var nextButtons = document.querySelectorAll(".next");
@@ -51,10 +56,12 @@ var submitButton = document.querySelector(".submit");
 
 nextButtons.forEach(function(button) {
     button.addEventListener("click", nextStep);
+   
 });
 
 prevButtons.forEach(function(button) {
     button.addEventListener("click", prevStep);
+   
 });
 
 // Enviar el formulario cuando se hace clic en "Enviar"

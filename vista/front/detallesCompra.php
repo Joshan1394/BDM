@@ -6,14 +6,24 @@ require '../../php/Conexion.php';
 $db = new Database();
 $con = $db->conectar();
 
+$orden = $_GET['orden'];
 
 
-// print_r($_SESSION);
-$idCliente = $_SESSION['idUsuario'];
-// echo $idCliente;
+// if ($orden == null) {
+//   header("Location: /BDM/vista/front/historial.php");
+//   exit;
+// }
 
-$sql = $con->prepare("SELECT TransaccionID, FechaCompra, Estado, Total FROM Compra WHERE UsuarioID=? ORDER BY DATE(FechaCompra) DESC");
-$sql->execute([$idCliente]);
+
+$sqlCompra = $con->prepare("SELECT CompraID, TransaccionID, FechaCompra, Total FROM Compra WHERE TransaccionID=? LIMIT 1");
+$sqlCompra->execute([$orden]);
+$rowCompra = $sqlCompra->fetch(PDO::FETCH_ASSOC);
+$idcompra = $rowCompra['CompraID'];
+
+$sqlDetalle = $con->prepare("SELECT DetallesCompraID, Nombre, Precio, Cantidad FROM detallesCompra WHERE DetallesCompraID=?");
+// $sqlDetalle->execute([$idCompra]);
+
+
 
 ?>
 
@@ -42,11 +52,12 @@ $sql->execute([$idCliente]);
 
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
   <!-- Style -->
-  <link rel="stylesheet" href="/BDM/public/css/pagina2.css">
+  <link rel="stylesheet" href="/BDM/public/css/pagina.css">
   <link rel="stylesheet" href="/BDM/public/css/historial_style.css">
 
   <style>
     body {
+      min-height: 75rem;
       padding-top: 4.5rem;
     }
 
@@ -84,32 +95,37 @@ $sql->execute([$idCliente]);
       fill: currentColor;
     }
 
-    /* .nav-scroller {
-            position: relative;
-            z-index: 2;
-            height: 2.75rem;
-            overflow-y: hidden;
-        }
+    .nav-scroller {
+      position: relative;
+      z-index: 2;
+      height: 2.75rem;
+      overflow-y: hidden;
+    }
 
-        .nav-scroller .nav {
-            display: flex;
-            flex-wrap: nowrap;
-            padding-bottom: 1rem;
-            margin-top: -1px;
-            overflow-x: auto;
-            text-align: center;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-        } */
+    .nav-scroller .nav {
+      display: flex;
+      flex-wrap: nowrap;
+      padding-bottom: 1rem;
+      margin-top: -1px;
+      overflow-x: auto;
+      text-align: center;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
 
     .title {
       font-family: 'Fugaz One';
       color: rgb(178, 112, 146) !important;
     }
 
-    /* .bd-mode-toggle {
-            z-index: 1500;
-        } */
+    .bd-mode-toggle {
+      z-index: 1500;
+    }
+
+    .custom-card {
+      height: 400px;
+      /* Ajusta esta altura según tus necesidades */
+    }
   </style>
 
 
@@ -118,6 +134,9 @@ $sql->execute([$idCliente]);
 </head>
 
 <body>
+
+
+
 
 
   <nav class="navbar navbar-expand-md  fixed-top nav-background" role="navigation">
@@ -133,6 +152,7 @@ $sql->execute([$idCliente]);
           <button class="btn btn-sumit" type="submit">Search</button>
         </form>
       </div>
+
 
       <div id="menuToggle" class="me-3">
 
@@ -164,95 +184,59 @@ $sql->execute([$idCliente]);
     </div>
   </nav>
 
-  <!-- <nav role="navigation">
-  
-</nav> -->
-
   <main>
-    <div class="container text-center">
-      <h1 style="color: black" class="mt-3">Mis compras</h1>
-    </div>
 
-    <?php while ($row = $sql->fetch(PDO::FETCH_ASSOC)) { ?>
-      <div class="card bg-light mb-3">
-        <div class="card-header">
-          <?php echo $row['FechaCompra'] ?>
-        </div>
-        <div class="card-body ">
-          <!-- <h5 class="card-title">Clave de la compra
-            <?php echo $row['TransaccionID'] ?>
-          </h5> -->
-          <h5 class="card-title">Clave de la compra
-            <?php echo $row['TransaccionID'] ?>
-          </h5>
-          <p class="card-text">Total: $<?php echo $row['Total'] ?></p>
-          <!-- <a href="/BDM/vista/front/detallesCompra.php?orden=<?php echo $row['TransaccionID']; ?>" class="btn btn-primary">Ver Compra</a> -->
-        </div>
-      </div>
-    <?php } ?>
-
-
-
-
-
-
-
-    <!-- <div class="container-fluid">
-      <h1 style="color: black">Mis compras</h1>
+    <div class="container">
       <div class="row">
-        <div class="col align-self-center mt-5">
-
-          <div class="text-center">
-
-            <table class="table cardbody-background ">
-              <thead>
-                <tr>
-                  <th class="col-md-3">Producto</th>
-                  <th class="col-md-3">
-                    Nombre
-                  </th>
-                  <th class="col-md-3">Descripción</th>
-                  <th class="col-md-3">Estado</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th class="col-md-4">
-                    <img src="https://m.media-amazon.com/images/I/81h0WFRhjiL._AC_UF894,1000_QL80_.jpg"
-                      style="width: 40%;" alt="...">
-                  </th>
-                  <td>Juguetes de gato</td>
-                  <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae...</td>
-                  <td class="text-info-emphasis">Entrega el lunes 25 de septiembre</td>
-                </tr>
-              </tbody>
-            </table>
+        <div class="col-12 col-md-4">
+          <div class="car mb-3">
+            <div class="card-header">
+              <strong>Detalle de la compra</strong>
+            </div>
+            <div class="card-body">
+              <p><strong>Fecha:</strong>
+                <?php
+                if (isset($rowCompra['FechaCompra'])) {
+                  $fechaCompra = new DateTime($rowCompra['FechaCompra']);
+                  $formattedFechaCompra = $fechaCompra->format('Y-m-d H:i:s'); // Ajusta el formato según tus necesidades
+                  echo $formattedFechaCompra;
+                } else {
+                  echo "Fecha de compra no disponible";
+                }
+                ?>date('Y-m-d H:i:s', strtotime($fecha));
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div> -->
-
-
-
-
-    <br><br>
-  </main>
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer mt-5">
-
-
-    <div class="container mt-4 text-center">
-      <div class="text">
-        &copy; Copyright <strong></strong>. All Rights Reserved
-      </div>
-      <div class="text">
-
-        Designed by perla, gera y mike</a>
-      </div>
     </div>
 
-  </footer><!-- End Footer -->
+
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer mt-5">
+
+
+      <div class="container mt-4 text-center">
+        <div class="text">
+          &copy; Copyright <strong></strong>. All Rights Reserved
+        </div>
+        <div class="text">
+
+          Designed by perla, gera y mike</a>
+        </div>
+      </div>
+
+    </footer><!-- End Footer -->
+  </main>
+
+
+
+
   <script src="/BDM/public/js/bootstrap.bundle.min.js"></script>
+
+
+
 
 </body>
 

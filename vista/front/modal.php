@@ -3,7 +3,8 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="/BDM/public/css/modal_style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
 </head>
 
@@ -25,7 +26,8 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Description</label>
-                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                        <textarea class="form-control" placeholder="Leave a comment here"
+                            id="floatingTextarea"></textarea>
                     </div>
 
                     <button class="btn btn-primary next">Siguiente</button>
@@ -55,9 +57,10 @@
                             <option value="2">Vender</option>
                         </select>
                     </div>
-                    <button class="btn btn-primary prev">Anterior</button>
-                    <button class="btn btn-primary next">Siguiente</button>
+
                 </form>
+                <button class="btn btn-primary prev">Anterior</button> 
+                <button class="btn btn-primary next">Siguiente</button>
 
             </div>
             <div class="form-step" data-step="3">
@@ -71,11 +74,13 @@
                         <div class="carousel-inner">
                             <!-- Las imágenes seleccionadas se mostrarán aquí -->
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                            data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                            data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
@@ -89,7 +94,8 @@
                 <form>
                     <div class="mb-3">
                         <label for="formFileMultiple" class="form-label">Video</label>
-                        <input class="form-control" id="file" type="file" accept="video/mp4,video/mkv, video/x-m4v,video/*">
+                        <input class="form-control" id="file" type="file"
+                            accept="video/mp4,video/mkv, video/x-m4v,video/*">
                     </div>
                     <div class="mb-3 w-75">
                         <video class="mb-3 w-100 h-100" id="video" controls></video>
@@ -100,17 +106,19 @@
             </div>
         </div>
     </div>
-   
+
     <script src="/BDM/public/js/modal.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
     <script>
-       document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             const carouselInner = document.querySelector(".carousel-inner");
             const inputFoto = document.getElementById("formFileMultiple");
 
-            inputFoto.addEventListener("change", function() {
+            inputFoto.addEventListener("change", function () {
                 // Borra las imágenes anteriores del carrusel
                 carouselInner.innerHTML = "";
 

@@ -4,7 +4,7 @@ session_start();
 if (isset($_SESSION['usuario_id'])) {
     $servername = "localhost";
     $username = "root";
-    $password = "1234";
+    $password = "admin"; //$password = "1234";
     $dbname = "bd_bdm";
 
 
