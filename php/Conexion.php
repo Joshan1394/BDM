@@ -22,7 +22,7 @@ class Database
   private $servername = "localhost";
   private $dbname = "bd_bdm";
   private $username = "root";
-  private $password = "admin";
+  private $password = "1234";
   private $charset = "utf8";
 
   public function conectar()
@@ -43,6 +43,10 @@ class Database
       echo 'Error conexión: ' . $e->getMessage();
       exit;
     }
+  }
+  public function desconectar()
+  {
+    $this->conn = null;
   }
 }
 

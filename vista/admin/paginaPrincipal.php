@@ -5,17 +5,7 @@ require '../../php/Conexion.php';
 $db = new Database();
 $con = $db->conectar();
 
-// Consultar la vista Vista_Productos_Mas_Vendidos
-$sqlMasVendidos = $con->prepare("SELECT ProductoID, TotalVentas FROM Vista_Productos_Mas_Vendidos");
-$sqlMasVendidos->execute();
-$productosMasVendidos = $sqlMasVendidos->fetchAll(PDO::FETCH_ASSOC);
-
-// Consultar la vista Vista_Compras_Ultimo_Mes
-$sqlCompras = $con->prepare("SELECT * FROM Vista_Compras_Ultimo_Mes");
-$sqlCompras->execute();
-$comprasUltimoMes = $sqlCompras->fetchAll(PDO::FETCH_ASSOC);
-
-$sql = $con->prepare("SELECT ProductoID, NombreProducto, Precio FROM Productos");
+$sql = $con->prepare("SELECT CotizacionID, NombreCotizacion, Precio FROM cotizacion");
 $sql->execute();
 $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -119,12 +109,6 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
       height: 400px;
       /* Ajusta esta altura según tus necesidades */
     }
-    .mensajeCompasMes{
-      color: #f00;
-    }
-    .mensajeProductoVendido{
-      color: #f00;
-    }
   </style>
 
 
@@ -165,19 +149,9 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
             <a class="nav-link text" href="/BDM/vista/front/perfil.php">Perfil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text" href="/BDM/vista/front/verCarrito.php" style="display: flex; align-items: center;">
-              Carrito<span id="num_cart" class="badge"
-                style="background-color: transparent; font-size: inherit; margin-top: -0.9em;"><?php echo $num_cart;?></span></a>
-          </li>
-          <li class="nav-item">
-            <a  class="nav-link text" href="/BDM/vista/front/historial.php">Historial</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link text" href="/BDM/vista/login.php">Inicio sesión</a>
           </li>
-          <li class="nav-item">
-            <!-- <a class="nav-link text" href="/BDM/vista/login.php">Inicio sesión</a> -->
-          </li>
+
         </ul>
       </div>
     </div>
@@ -207,47 +181,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     <div class="container text-center mt-4">
       <div class="row align-items-start">
 
-        <div class="row">
-
-          <?php
-            // Verificar si hay resultados en la vista de productos más vendidos
-            if ($productosMasVendidos) {
-              // Mostrar los resultados de productos más vendidos
-              echo '<h2>Productos Más Vendidos</h2>';
-              foreach ($productosMasVendidos as $productoMasVendido) {
-                  echo '<div class="producto-mas-vendido">';
-                  echo '<p>ProductoID: ' . $productoMasVendido['ProductoID'] . '</p>';
-                  echo '<p>Total de Ventas: ' . $productoMasVendido['TotalVentas'] . '</p>';
-                  // Puedes agregar más detalles según sea necesario
-                  echo '</div>';
-              }
-            } else {
-              // Manejar el caso en que no haya productos más vendidos
-              echo '<p class="mensajeProductoVendido">No se encontraron productos más vendidos.</p>';
-            }
-          ?>
-
-        </div>
-        <div class="row">
-          <?php 
-            // Verificar si hay resultados en la vista de compras del último mes
-            if ($comprasUltimoMes) {
-              // Mostrar los resultados de compras
-              echo '<h2>Compras del Último Mes</h2>';
-              foreach ($comprasUltimoMes as $compra) {
-                  echo '<div class="compra">';
-                  echo '<p>CompraID: ' . $compra['CompraID'] . '</p>';
-                  echo '<p>Fecha de Compra: ' . $compra['FechaCompra'] . '</p>';
-                  // Agregar más detalles según sea necesario
-                  echo '</div>';
-              }
-            } else {
-              // Manejar el caso en que no haya compras en el último mes
-              echo '<p class="mensajeCompasMes"> No se encontraron compras en el último mes.</p>';
-            }
-          ?>
-        </div>
-        
+      
         <?php foreach ($resultado as $row) { ?>
           <div class="col-md-4 mb-4">
             <div class="card" style="width: 18rem;">
@@ -255,7 +189,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-              $id = $row['ProductoID'];
+              $id = $row['CotizacionID'];
               // echo $id;
               $imagen = "/BDM/public/img/" . $id . "/imgPrincipal.jpg";
               // echo $imagen;
@@ -268,7 +202,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
               <img src="<?php echo $imagen; ?>" class="card-img-top">
               <div class="card-body">
                 <h5 class="card-title">
-                  <?php echo $row['NombreProducto']; ?>
+                  <?php echo $row['NombreCotizacion']; ?>
                 </h5>
                 <p class="card-text">$
                   <?php echo number_format($row['Precio'], 2, '.', ','); ?>
@@ -276,8 +210,8 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
               </div>
 
               <div class="mt-1 mb-3">
-                <a class="nav-link text botton" href="/BDM/vista/front/compra2.php?ProductoID=<?php echo $row['ProductoID'];?>&token=<?php
-                echo hash_hmac('sha1', $row['ProductoID'], KEY_TOKEN);?>">Comprar</a>
+                <a class="nav-link text botton" href="/BDM/vista/front/compra2.php?CotizacionID=<?php echo $row['CotizacionID'];?>&token=<?php
+                echo hash_hmac('sha1', $row['CotizacionID'], KEY_TOKEN);?>">Comprar</a>
               </div>
             </div>
           </div>
@@ -286,24 +220,23 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     </div>
     <div id="contenidoModal"></div>
 <?php } ?>
-
-
-    <!-- ======= Footer ======= -->
-    <footer id="footer" class="footer mt-5">
-
-
-      <div class="container mt-4 text-center">
-        <div class="text">
-          &copy; Copyright <strong></strong>. All Rights Reserved
-        </div>
-        <div class="text">
-
-          Designed by perla, gera y mike</a>
-        </div>
-      </div>
-
-    </footer><!-- End Footer -->
+   
   </main>
+   <!-- ======= Footer ======= -->
+   <footer id="footer" class="footer mt-5">
+
+
+<div class="container mt-4 text-center">
+  <div class="text">
+    &copy; Copyright <strong></strong>. All Rights Reserved
+  </div>
+  <div class="text">
+
+    Designed by perla, gera y mike</a>
+  </div>
+</div>
+
+</footer><!-- End Footer -->
   <script src="/BDM/public/js/bootstrap.bundle.min.js"></script>
  <!-- Incluye tu JavaScript al final del cuerpo del documento -->
  

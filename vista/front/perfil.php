@@ -122,7 +122,7 @@ session_start();
   <br><br><br><br><br>
 
   <!-- MAIN START -->
-  <main>
+<main>
 
     <div class="card text-center" style="margin-left:5%; margin-right:5%; border-color:transparent">
       <!-- PERFIL HEAD START -->
@@ -285,16 +285,19 @@ session_start();
           </div>
 
           <!-- AQUI -->
-          <button class="btn btn-sumit" id="openModalBtn">Agregar producto</button>
-
+          <button class="btn btn-sumit ms-3" id="openModalBtn">Agregar producto</button>
+          <button class="btn btn-sumit ms-3" id="OpenCategoriasBtn">Categorias</button>
+          <button class="btn btn-sumit ms-3" id="openCotizacionBtn">Realizar cotizacion</button>
+      
         </div>
       </div>
     </div>
-    </div>
-    </div>
-    <div id="myModal" class="modal">
-      <div class="modal-content w-50">
-        <span class="close">&times;</span>
+  </div>
+</div>
+<!-- modal agregar producto -->
+  <div id="myModal" class="modal mt-5">
+    <div class="modal-content w-50">
+      <span class="close">&times;</span>
         <form action="/BDM/php/productos.php" method="POST" enctype="multipart/form-data">
 
           <h2>Agregar Nuevo Producto</h2>
@@ -310,7 +313,6 @@ session_start();
               name="descripcion"></textarea>
           </div>
 
-
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Precio individual</label>
             <input type="text" class="form-control w-50" id="exampleInputEmail1" name="precio" placeholder="$0.00">
@@ -318,45 +320,24 @@ session_start();
 
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Cantidad</label>
-            <div class="number">
-              <span class="minus">-</span>
-              <input type="text" id="cantidad" name="cantidad" value="1" />
-              <span class="plus">+</span>
-            </div>
+              <div class="number">
+                <span class="minus">-</span>
+                <input type="text" id="cantidad" name="cantidad" value="1" />
+                <span class="plus">+</span>
+              </div>
           </div>
 
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Categoria</label>
             <select class="form-select w-50" name="categoria" aria-label="Default select example">
-              <option selected>Seleccionar</option>
-              <?php foreach ($Categorias as $categoria) { ?>
-                <option value="<?php echo $categoria["CategoriaID"]; ?>">
-                  <?php echo $categoria["NombreCategoria"]; ?>
-                </option>
-              <?php } ?>
+                <option selected>Seleccionar</option>
+                <?php foreach ($Categorias as $categoria) { ?>
+                  <option value="<?php echo $categoria["CategoriaID"]; ?>">
+                    <?php echo $categoria["NombreCategoria"]; ?>
+                  </option>
+                <?php } ?>
             </select>
           </div>
-
-
-          <!-- <div class="mb-3">
-            <label for="formFileMultiple" class="form-label">Imagenes (1 o más)</label>
-            <input class="form-control" name="imagen" type="file" id="formFileMultiple" accept="image/*" multiple>
-          </div>
-          <div id="carouselExampleAutoplaying" class="carousel slide mt-5" data-bs-ride="carousel">
-            <div class="carousel-inner"> -->
-          <!-- Las imágenes seleccionadas se mostrarán aquí -->
-          <!-- </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
-              data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
-              data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div> -->
 
           <div class="mb-3">
             <label for="imagen_principal" class="form-label">Imagen</label>
@@ -372,7 +353,7 @@ session_start();
           <div class="mb-3">
             <label for="formFileMultiple" class="form-label">Video</label>
             <input class="form-control" name="video" id="file" type="file"
-              accept="video/mp4,video/mkv, video/x-m4v,video/*">
+                accept="video/mp4,video/mkv, video/x-m4v,video/*">
           </div>
 
           <div class="mb-3 w-75">
@@ -381,14 +362,108 @@ session_start();
 
           <button class="btn btn-primary submit">Guardar Producto</button>
         </form>
-
-
-      </div>
     </div>
-  </main>
+  </div>
+
+<!-- modal categorias -->
+  <div id="categoriasModal" class="modal mt-5">
+    <div class="modal-content w-50">
+      <span class="closeCategoria">&times;</span>
+        <form action="/BDM/php/crearCategoria.php" method="POST" enctype="multipart/form-data">
+
+          <h2>Crear categoria</h2>
+
+          <div class="mb-3">
+            <label for="categoriaID" class="form-label">Categoria</label>
+            <input type="text" class="form-control" id="categoriaID" aria-describedby="emailHelp" name="categoria">
+          </div>
+          <div class="mb-3">
+            <label for="DescripcionID" class="form-label">Descripcion</label>
+            <textarea class="form-control" placeholder="Ingrese la descricion de la categoria" id="DescripcionID"
+              name="descripcion"></textarea>
+          </div>
+          <button class="btn btn-primary submit">Guardar Categoria</button>
+        </form>
+    </div>
+  </div>
+
+  <!-- modal cotizaciones -->
+  
+  <div id="modalCotizacion" class="modal mt-5">
+    <div class="modal-content w-50">
+      <span class="closeCotizacion">&times;</span>
+        <form action="/BDM/php/cotizacion.php" method="POST" enctype="multipart/form-data">
+
+          <h2>Agregar Nuevo Producto para cotizar</h2>
+
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nombreCotizacion">
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Description</label>
+            <textarea class="form-control" placeholder="Ingrese la descripcion del producto" id="floatingTextarea"
+              name="descripcionCotizacion"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Precio individual</label>
+            <input class="form-control" type="text" placeholder="Precio discutido con el cliente" aria-label="Disabled input example" disabled>
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Cantidad</label>
+              <div class="number">
+                <span class="minucategorias">-</span>
+                <input type="text" id="cantidadCotizacion" name="cantidadCotizacion" value="1" />
+                <span class="pluscategorias">+</span>
+              </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Categoria</label>
+            <select class="form-select w-50" name="categoriaCotizacion" aria-label="Default select example">
+                <option selected>Seleccionar</option>
+                <?php foreach ($Categorias as $categoria) { ?>
+                  <option value="<?php echo $categoria["CategoriaID"]; ?>">
+                    <?php echo $categoria["NombreCategoria"]; ?>
+                  </option>
+                <?php } ?>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="imagen_principal" class="form-label">Imagen</label>
+            <input type="file" class="form-control" name="imagen1Cotizacion" accept="image/jpeg/jpg" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="imagen_varias" class="form-label">Otras Imagenes (Opcional)</label>
+            <input type="file" class="form-control" name="imagen2Cotizacion[]" accept="image/jpeg" multiple>
+          </div>
+
+
+          <div class="mb-3">
+            <label for="formFileMultiple" class="form-label">Video</label>
+            <input class="form-control" name="videoCotizacion" id="file" type="file"
+                accept="video/mp4,video/mkv, video/x-m4v,video/*">
+          </div>
+
+          <div class="mb-3 w-75">
+            <video class="mb-3 w-100 h-100" id="video" controls></video>
+          </div>
+
+          <button class="btn btn-primary submit">Guardar Producto</button>
+        </form>
+    </div>
+  </div>
+</main>
 
   <br><br><br><br><br>
   <script src="/BDM/public/js/modal.js"></script>
+  <script src="/BDM/public/js/modalCategoria.js"></script>
+  <script src="/BDM/public/js/modalCotizacion.js"></script>
   <script src="/BDM/public/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"

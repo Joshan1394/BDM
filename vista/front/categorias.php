@@ -1,25 +1,18 @@
 <?php
-
+// Incluir archivos de configuración y conexión
 require '../../php/Config.php';
 require '../../php/Conexion.php';
+
+// Crear una instancia de la base de datos
 $db = new Database();
 $con = $db->conectar();
 
-// Consultar la vista Vista_Productos_Mas_Vendidos
-$sqlMasVendidos = $con->prepare("SELECT ProductoID, TotalVentas FROM Vista_Productos_Mas_Vendidos");
-$sqlMasVendidos->execute();
-$productosMasVendidos = $sqlMasVendidos->fetchAll(PDO::FETCH_ASSOC);
-
-// Consultar la vista Vista_Compras_Ultimo_Mes
-$sqlCompras = $con->prepare("SELECT * FROM Vista_Compras_Ultimo_Mes");
-$sqlCompras->execute();
-$comprasUltimoMes = $sqlCompras->fetchAll(PDO::FETCH_ASSOC);
-
-$sql = $con->prepare("SELECT ProductoID, NombreProducto, Precio FROM Productos");
+// Consultar la vista de categorías
+$sql = $con->prepare("SELECT CategoriaID, NombreCategoria, DescripcionCategoria, TotalProductos FROM Vista_Categorias");
 $sql->execute();
-$resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
-?>
+$categorias = $sql->fetchAll(PDO::FETCH_ASSOC);
 
+?>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
 
@@ -119,11 +112,11 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
       height: 400px;
       /* Ajusta esta altura según tus necesidades */
     }
-    .mensajeCompasMes{
-      color: #f00;
+    .categoria{
+        color: #000;
     }
-    .mensajeProductoVendido{
-      color: #f00;
+    .mensajeError{
+        color: #f00;
     }
   </style>
 
@@ -175,118 +168,39 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
           <li class="nav-item">
             <a class="nav-link text" href="/BDM/vista/login.php">Inicio sesión</a>
           </li>
-          <li class="nav-item">
-            <!-- <a class="nav-link text" href="/BDM/vista/login.php">Inicio sesión</a> -->
-          </li>
+
         </ul>
       </div>
     </div>
   </nav>
 
   <main>
-    <div class="container container-background">
-      <div class="p-5 rounded">
-        <div class="row align-items-center ">
-          <div class="col align-self-center">
-            <div class="card card-background">
-              <div class="card-body">
-                <h1 class="title">Tu estilo, tu elección</h1>
-                <p class="text">Resalta la variedad de productos para que los clientes encuentren algo que se ajuste a
-                  su estilo.</p>
-              </div>
-            </div>
-
-          </div>
-          <div class="col">
-            <img src="/BDM/public/img/principal.svg" alt="compras" style="height: 20rem;">
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="container text-center mt-4">
       <div class="row align-items-start">
-
-        <div class="row">
-
-          <?php
-            // Verificar si hay resultados en la vista de productos más vendidos
-            if ($productosMasVendidos) {
-              // Mostrar los resultados de productos más vendidos
-              echo '<h2>Productos Más Vendidos</h2>';
-              foreach ($productosMasVendidos as $productoMasVendido) {
-                  echo '<div class="producto-mas-vendido">';
-                  echo '<p>ProductoID: ' . $productoMasVendido['ProductoID'] . '</p>';
-                  echo '<p>Total de Ventas: ' . $productoMasVendido['TotalVentas'] . '</p>';
-                  // Puedes agregar más detalles según sea necesario
-                  echo '</div>';
-              }
+      <?php
+      
+            // Verificar si hay resultados
+            if ($categorias) {
+                // Mostrar resultados en el formato deseado
+                foreach ($categorias as $categoria) {
+                    echo '<div class="categoria">';
+                    echo '<h2>' . $categoria['NombreCategoria'] . '</h2>';
+                    echo '<p>' . $categoria['DescripcionCategoria'] . '</p>';
+                    echo '<p>Total de productos: ' . $categoria['TotalProductos'] . '</p>';
+                    echo '<hr>';
+                    echo '</div>';
+                }
             } else {
-              // Manejar el caso en que no haya productos más vendidos
-              echo '<p class="mensajeProductoVendido">No se encontraron productos más vendidos.</p>';
+                // Manejar el caso en que no haya categorías
+                echo '<h2 class="mensajeError">No se encontraron categorías.</h2>';
             }
-          ?>
 
-        </div>
-        <div class="row">
-          <?php 
-            // Verificar si hay resultados en la vista de compras del último mes
-            if ($comprasUltimoMes) {
-              // Mostrar los resultados de compras
-              echo '<h2>Compras del Último Mes</h2>';
-              foreach ($comprasUltimoMes as $compra) {
-                  echo '<div class="compra">';
-                  echo '<p>CompraID: ' . $compra['CompraID'] . '</p>';
-                  echo '<p>Fecha de Compra: ' . $compra['FechaCompra'] . '</p>';
-                  // Agregar más detalles según sea necesario
-                  echo '</div>';
-              }
-            } else {
-              // Manejar el caso en que no haya compras en el último mes
-              echo '<p class="mensajeCompasMes"> No se encontraron compras en el último mes.</p>';
-            }
-          ?>
-        </div>
-        
-        <?php foreach ($resultado as $row) { ?>
-          <div class="col-md-4 mb-4">
-            <div class="card" style="width: 18rem;">
-              <?php
-
-
-
-              $id = $row['ProductoID'];
-              // echo $id;
-              $imagen = "/BDM/public/img/" . $id . "/imgPrincipal.jpg";
-              // echo $imagen;
-            
-              if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $imagen)) {
-                $imagen = "/BDM/public/img/no-photo.jpg";
-              }
-
-              ?>
-              <img src="<?php echo $imagen; ?>" class="card-img-top">
-              <div class="card-body">
-                <h5 class="card-title">
-                  <?php echo $row['NombreProducto']; ?>
-                </h5>
-                <p class="card-text">$
-                  <?php echo number_format($row['Precio'], 2, '.', ','); ?>
-                </p>
-              </div>
-
-              <div class="mt-1 mb-3">
-                <a class="nav-link text botton" href="/BDM/vista/front/compra2.php?ProductoID=<?php echo $row['ProductoID'];?>&token=<?php
-                echo hash_hmac('sha1', $row['ProductoID'], KEY_TOKEN);?>">Comprar</a>
-              </div>
-            </div>
-          </div>
-        
+            // Cerrar la conexión
+            $db->desconectar();
+        ?>
       </div>
     </div>
     <div id="contenidoModal"></div>
-<?php } ?>
-
 
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer mt-5">
@@ -306,7 +220,25 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   </main>
   <script src="/BDM/public/js/bootstrap.bundle.min.js"></script>
  <!-- Incluye tu JavaScript al final del cuerpo del documento -->
- 
+ <script>
+    // Función para abrir el modal
+    function abrirModal() {
+      // Carga el contenido del modal.html en el div con id 'contenidoModal'
+      document.getElementById('contenidoModal').innerHTML = '<object type="text/html" data=BDM/vista/front/categorias.php"></object>';
+    }
+
+    // Función para cerrar el modal
+    function cerrarModal() {
+      document.getElementById('contenidoModal').innerHTML = ''; // Limpia el contenido del modal
+    }
+
+    // Agrega un evento de clic al enlace de Categorias
+    document.getElementById('enlaceCategorias').addEventListener('click', function(event) {
+      event.preventDefault(); // Evita que se siga el enlace por defecto
+      console.log("esta haciendo click");
+      abrirModal(); // Llama a la función para abrir el modal
+    });
+  </script>
 </body>
 
 </html>

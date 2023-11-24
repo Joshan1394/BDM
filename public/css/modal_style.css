@@ -35,6 +35,31 @@
     color: rgb(70, 100, 158);
 }
 
+.closeCategoria{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    cursor: pointer;
+    color: rgb(13, 2, 33);
+}
+.closeCategoria{
+    color: rgb(70, 100, 158);
+}
+
+.closeCotizacion{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    cursor: pointer;
+    color: rgb(13, 2, 33);
+}
+.closeCotizacion{
+    color: rgb(70, 100, 158);
+}
+
+
 span {cursor:pointer; }
 	
 		.minus, .plus{
@@ -63,3 +88,28 @@ span {cursor:pointer; }
 video{
     border-radius: 20px;
 }
+
+span {cursor:pointer; }
+	
+		.minucategorias, .pluscategorias{
+			width:30px;
+			height:30px;
+			background:#ddd;
+			border-radius:4px;
+			font-size: 1rem;
+			border:1px solid #ddd;
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+		}
+		input{
+            background:#ddd;
+			height:34px;
+            width: 100px;
+            text-align: center;
+            font-size: 26px;
+			border:1px solid #ddd;
+			border-radius:4px;
+            display: inline-block;
+            vertical-align: middle;
+        }

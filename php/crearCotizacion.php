@@ -7,25 +7,24 @@ require '../php/Conexion.php';
 $db = new Database();
 $con = $db->conectar();
 
-$nombre = $_POST['nombre'];
-$descripcion = $_POST['descripcion'];
-$category = $_POST['categoria'];
-$precio = $_POST['precio'];
-$cantidad = $_POST['cantidad'];
+$nombre = $_POST['nombreCotizacion'];
+$descripcion = $_POST['descripcionCotizacion'];
+$category = $_POST['categoriaCotizacion'];
+$cantidad = $_POST['cantidadCotizacion'];
 
 
-$sql = "INSERT INTO Productos (NombreProducto, DescripcionProducto, CategoriaID, Precio, CantidadDisponible) 
-VALUES(?,?,?,?,?)";
+$sql = "INSERT INTO Productos (NombreCotizacion, DescripcionCotizacion, CategoriaID, CantidadDisponible) 
+VALUES(?,?,?,?)";
 $stm = $con->prepare($sql);
-if ($stm->execute([$nombre, $descripcion, $category, $precio, $cantidad])) {
+if ($stm->execute([$nombre, $descripcion, $category, $cantidad])) {
     $id = $con->lastInsertId();
 
     /*Imagen principal*/
-    if ($_FILES['imagen1']['error'] == UPLOAD_ERR_OK) {
+    if ($_FILES['imagen1Cotizacion']['error'] == UPLOAD_ERR_OK) {
         $dir = '../public/img/' . $id . '/';
         $allow = ['jpeg', 'jpg'];
 
-        $arregloImg = explode('.', $_FILES['imagen1']['name']);
+        $arregloImg = explode('.', $_FILES['imagen1Cotizacion']['name']);
         $extension = strtolower(end($arregloImg));
 
         if (in_array($extension, $allow)) {
@@ -35,7 +34,7 @@ if ($stm->execute([$nombre, $descripcion, $category, $precio, $cantidad])) {
 
 
             $ruta_img = $dir . 'imgPrincipal.' . $extension;
-            if (move_uploaded_file($_FILES['imagen1']['tmp_name'], $ruta_img)) {
+            if (move_uploaded_file($_FILES['imagen1Cotizacion']['tmp_name'], $ruta_img)) {
                 echo "Archivo cargado correctamente";
             } else {
                 echo "Error al cargar archivo";
@@ -50,7 +49,7 @@ if ($stm->execute([$nombre, $descripcion, $category, $precio, $cantidad])) {
 
 
     //Otras imagenes
-    if (isset($_FILES['imagen2'])) {
+    if (isset($_FILES['imagen2Cotizacion'])) {
         $dir = '../public/img/' . $id . '/';
         $allow = ['jpeg', 'jpg'];
 
@@ -59,8 +58,8 @@ if ($stm->execute([$nombre, $descripcion, $category, $precio, $cantidad])) {
         }
 
         $contador = 1;
-        foreach ($_FILES['imagen2']['tmp_name'] as $key => $tmp_name) {
-            $fileName = $_FILES['imagen2']['name'][$key];
+        foreach ($_FILES['imagen2Cotizacion']['tmp_name'] as $key => $tmp_name) {
+            $fileName = $_FILES['imagen2Cotizacion']['name'][$key];
 
             $arregloImg = explode('.', $fileName);
             $extension = strtolower(end($arregloImg));
@@ -82,6 +81,3 @@ if ($stm->execute([$nombre, $descripcion, $category, $precio, $cantidad])) {
 }
 
 header('Location:\BDM\vista\front\paginaPrincipal.php');
-
-
-

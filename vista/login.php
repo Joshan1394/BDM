@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
 
@@ -77,6 +79,12 @@
                                 <button type="submit" class="mt-3 btn btn-primary" value="Enviar">Ingresar</button>
                             </div>
                         </form>
+                        <?php
+                        // Después del formulario, puedes mostrar el error si existe
+                        if (isset($error)) {
+                            echo '<script>alert("' . $error . '");</script>';
+                        }
+                        ?>
                     </div>
                 </div>
             </div>

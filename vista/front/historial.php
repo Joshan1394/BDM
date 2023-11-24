@@ -84,32 +84,12 @@ $sql->execute([$idCliente]);
       fill: currentColor;
     }
 
-    /* .nav-scroller {
-            position: relative;
-            z-index: 2;
-            height: 2.75rem;
-            overflow-y: hidden;
-        }
-
-        .nav-scroller .nav {
-            display: flex;
-            flex-wrap: nowrap;
-            padding-bottom: 1rem;
-            margin-top: -1px;
-            overflow-x: auto;
-            text-align: center;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-        } */
-
     .title {
       font-family: 'Fugaz One';
       color: rgb(178, 112, 146) !important;
     }
 
-    /* .bd-mode-toggle {
-            z-index: 1500;
-        } */
+
   </style>
 
 
@@ -164,9 +144,6 @@ $sql->execute([$idCliente]);
     </div>
   </nav>
 
-  <!-- <nav role="navigation">
-  
-</nav> -->
 
   <main>
     <div class="container text-center">
@@ -190,50 +167,6 @@ $sql->execute([$idCliente]);
         </div>
       </div>
     <?php } ?>
-
-
-
-
-
-
-
-    <!-- <div class="container-fluid">
-      <h1 style="color: black">Mis compras</h1>
-      <div class="row">
-        <div class="col align-self-center mt-5">
-
-          <div class="text-center">
-
-            <table class="table cardbody-background ">
-              <thead>
-                <tr>
-                  <th class="col-md-3">Producto</th>
-                  <th class="col-md-3">
-                    Nombre
-                  </th>
-                  <th class="col-md-3">Descripción</th>
-                  <th class="col-md-3">Estado</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th class="col-md-4">
-                    <img src="https://m.media-amazon.com/images/I/81h0WFRhjiL._AC_UF894,1000_QL80_.jpg"
-                      style="width: 40%;" alt="...">
-                  </th>
-                  <td>Juguetes de gato</td>
-                  <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae...</td>
-                  <td class="text-info-emphasis">Entrega el lunes 25 de septiembre</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
-
-
 
     <br><br>
   </main>

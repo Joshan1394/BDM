@@ -1,10 +1,10 @@
 <?php
+session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   
     $servername = "localhost";
     $username = "root";
-    $password = "admin"; //$password = "1234";
+    $password = "1234"; // Cambia esto con tu contraseña
     $dbname = "bd_bdm";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -12,10 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($conn->connect_error) {
         die("Error en la conexión a la base de datos: " . $conn->connect_error);
     }
-
     $usuario = $_POST["Usuario"];
     $contra = $_POST["Contra1"];
-
 
     $sql = "SELECT * FROM usuarios WHERE apodo = ?";
 
@@ -26,9 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = $result->fetch_assoc();
 
     if ($user) {
- 
         if (password_verify($contra, $user["password"])) {
-        
             $nombreUsuario = $user["nombre"];
             $apellidosUsuario = $user["apellido"];
             $emailUsuario = $user["email"];
@@ -37,24 +33,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $tipoUsuario = $user["tipo"];
             $rutaDeImagenDelUsuario = $user["imagen"];
             $idUsuario = $user['id'];
-            session_start();
-            $_SESSION['nombreUsuario'] = $nombreUsuario;
-            $_SESSION['apellidosUsuario'] = $apellidosUsuario;
-            $_SESSION['emailUsuario'] = $emailUsuario;
-            $_SESSION['fechaNacimientoUsuario'] = $fechaNacimientoUsuario;
-            $_SESSION['generoUsuario'] = $generoUsuario;
-            $_SESSION['tipoUsuario'] = $tipoUsuario;
-            $imagenBase64 = base64_encode($rutaDeImagenDelUsuario);
-            $_SESSION['imagenUsuario'] = $imagenBase64; 
-            $_SESSION['idUsuario'] = $idUsuario;
-            header("Location: /BDM/vista/front/perfil.php"); 
+
+            // Verificar el tipo de usuario y redirigir a la vista correspondiente
+            if ($user["rol"] === 'Administrador') {
+                header("Location: /BDM/vista/admin/paginaPrincipal.php");
+            } else {
+                header("Location: /BDM/vista/front/perfil.php");
+            }
+
             exit();
         } else {
-            echo "Contraseña incorrecta.";
+            echo '<script>alert("Contraseña incorrecta.");</script>';
         }
     } else {
-        echo "Apodo incorrecto.";
+        echo '<script>alert("Apodo incorrecto.");</script>';
     }
+
+    // Cerrar conexiones y liberar recursos...
 
     $stmt->close();
     $conn->close();

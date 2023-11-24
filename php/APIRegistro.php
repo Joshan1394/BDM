@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $db_host = 'localhost';
     $db_user = 'root';
-    $db_pass = 'admin';  //$db_pass = '1234';
+    $db_pass = '1234';  //$db_pass = '1234';
     $db_name = 'bd_bdm';
 
     $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
