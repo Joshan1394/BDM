@@ -2,6 +2,7 @@
 require '../../php/Config.php';
 require '../../php/Conexion.php';
 // require '/BDM/php/Conexion.php';
+session_start();
 $db = new Database();
 $con = $db->conectar();
 
@@ -9,7 +10,7 @@ $sql = "SELECT CategoriaID, NombreCategoria FROM Categorias";
 $resultado = $con->query($sql);
 $Categorias = $resultado->fetchAll(PDO::FETCH_ASSOC);
 
-session_start();
+
 
 ?>
 <!doctype html>

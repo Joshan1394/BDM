@@ -34,11 +34,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $rutaDeImagenDelUsuario = $user["imagen"];
             $idUsuario = $user['id'];
 
+           $_SESSION 
+
             // Verificar el tipo de usuario y redirigir a la vista correspondiente
             if ($user["rol"] === 'Administrador') {
                 header("Location: /BDM/vista/admin/paginaPrincipal.php");
             } else {
                 header("Location: /BDM/vista/front/perfil.php");
+                console.log($user);
             }
 
             exit();
